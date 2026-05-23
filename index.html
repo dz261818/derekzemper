@@ -24,7 +24,7 @@
     --accent: #a8714f;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     font-family: var(--font-sans);
@@ -33,6 +33,7 @@
     font-size: 15px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   nav {
@@ -189,6 +190,8 @@
   }
 
   .work-item:hover .work-arrow { transform: translateX(3px); opacity: 1; }
+
+  .work-title-icon { display: none; margin-right: 7px; font-style: normal; }
 
   .work-item--minor { padding: 28px 0; grid-template-columns: 1fr 24px; }
   .work-item--minor .work-title {
@@ -479,6 +482,7 @@
 
   .cs-image img {
     width: 100%;
+    max-width: 100%;
     display: block;
     border: 1px solid var(--rule);
     border-radius: 2px;
@@ -513,10 +517,12 @@
     .about-body { flex-direction: column; gap: 32px; padding-left: 24px; padding-right: 24px; }
     .about-profile { width: 100px; height: 100px; }
     .about-text { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 32px; }
-    .case-study-meta { flex-direction: column; gap: 16px; }
-    .work-item { grid-template-columns: 1fr 24px; }
+    .case-study-meta { gap: 20px 32px; }
+    .work-item { grid-template-columns: 1fr; }
+    .work-item--minor { grid-template-columns: 1fr; }
     .work-thumb { display: none; }
     .work-arrow { display: none; }
+    .work-title-icon { display: inline; }
     .work-gate { padding: 48px 20px 0; }
     .work-gate-card { width: 100%; box-sizing: border-box; }
   }
@@ -598,7 +604,7 @@
       <div class="work-thumb"><img src="images/cover-payments.png" alt="Additional Interest Payment Removal"></div>
       <div class="work-item-left">
         <div class="work-label">Chase · Pay Business Lending</div>
-        <div class="work-title">Additional Interest Payment Removal</div>
+        <div class="work-title"><span class="work-title-icon">💳</span>Additional Interest Payment Removal</div>
         <div class="work-desc">Removing a legacy payment type causing widespread user confusion, while resolving an accessibility failure in a high-stakes financial flow.</div>
       </div>
       <div class="work-arrow">→</div>
@@ -607,7 +613,7 @@
       <div class="work-thumb"><img src="images/cover-conversions.png" alt="Guide-to-Review Conversion"></div>
       <div class="work-item-left">
         <div class="work-label">The Infatuation</div>
-        <div class="work-title">Guide-to-Review Conversion</div>
+        <div class="work-title"><span class="work-title-icon">🍽️</span>Guide-to-Review Conversion</div>
         <div class="work-desc">Designing and A/B testing CTA treatments to create a more direct path from guide pages to restaurant reviews, increasing guide-to-review conversion by 26%.</div>
       </div>
       <div class="work-arrow">→</div>
@@ -616,7 +622,7 @@
       <div class="work-thumb"><img src="images/cover-notifs.png" alt="Notifications"></div>
       <div class="work-item-left">
         <div class="work-label">The Infatuation</div>
-        <div class="work-title">Notifications</div>
+        <div class="work-title"><span class="work-title-icon">🔔</span>Notifications</div>
         <div class="work-desc">Establishing a net-new notifications system to deepen the relationship between The Infatuation and Chase, and give the platform a scalable channel to reach its users.</div>
       </div>
       <div class="work-arrow">→</div>
@@ -728,7 +734,7 @@
         <p class="cs-caption">Option 1: payment type, pay-from account, and date consolidated onto a single screen</p>
       </div>
       <div class="cs-image">
-        <img src="images/option-2-action-sheet.png" alt="Two mobile screens showing the consolidated payment screen with a confirmation action sheet displaying payment totals" style="width: 360px; display: block; margin: 0 auto;">
+        <img src="images/option-2-action-sheet.png" alt="Two mobile screens showing the consolidated payment screen with a confirmation action sheet displaying payment totals" style="width: 360px; max-width: 100%; display: block; margin: 0 auto;">
         <p class="cs-caption">Option 2: screen consolidation with an action sheet displaying payment totals in place of a verification screen</p>
       </div>
       <p>I presented these two first. When it became clear that capacity constraints made both difficult to prioritize, I introduced a third option: swap the quick select component for radio buttons and remove additional interest. Product selected this option. The target state was documented and left available for future exploration.</p>
@@ -929,7 +935,7 @@
         <p>Guide pages needed a more explicit path to reviews, surfaced at the moments users were most likely to want one.</p>
       </div>
       <div class="cs-image">
-        <img src="images/gr-app-before-after.png" alt="App lightbox before and after, with the improved CTA replacing the original buried link" style="width: 420px; display: block; margin: 0 auto;">
+        <img src="images/gr-app-before-after.png" alt="App lightbox before and after, with the improved CTA replacing the original buried link" style="width: 420px; max-width: 100%; display: block; margin: 0 auto;">
         <p class="cs-caption">App lightbox: before and after the improved CTA treatment</p>
       </div>
     </div>
@@ -952,7 +958,7 @@
       <h3>The decision to ship Variant A</h3>
       <p>The experiment results showed Variant B performing slightly ahead of Variant A, but the difference was marginal and not strong enough to justify the added complexity. The more important consideration was that the final full-screen lightbox CTA carried real risk. A user reaching the end of a carousel reasonably expects another image, not a CTA screen. Presenting one there felt like it could erode trust rather than build it.</p>
       <div class="cs-image">
-        <img src="images/gr-app-carousel.png" alt="Variant B's full-screen end-of-carousel CTA in the app: Still interested in The Phreys? Read the Review" style="width: 320px; display: block; margin: 0 auto;">
+        <img src="images/gr-app-carousel.png" alt="Variant B's full-screen end-of-carousel CTA in the app: Still interested in The Phreys? Read the Review" style="width: 320px; max-width: 100%; display: block; margin: 0 auto;">
         <p class="cs-caption">Variant B's full-screen carousel CTA in the app, an interaction pattern users don't expect at the end of an image carousel</p>
       </div>
       <p>Combined with the added development complexity Variant B required, the case for shipping Variant A was clear. It delivered nearly identical lift with less implementation cost and without the interaction pattern we weren't confident in.</p>
