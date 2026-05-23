@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Derek Zemper, Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gray-light: #e4e4e4;
+    --gray-mid: #999999;
+    --gray-dark: #444444;
+    --rule: #e0e0e0;
+    --font-serif: 'Libre Baskerville', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+    --max-width: 800px;
+    --nav-height: 60px;
+    --accent: #a8714f;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--white);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    z-index: 100;
+  }
+
+  .nav-name {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .nav-name-role {
+    font-size: 13px;
+    font-weight: 500;
+    color: #777;
+  }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-dark);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.15s;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+  .nav-links a:hover::after { opacity: 0.3; }
+
+  .nav-links a.active {
+    color: var(--black);
+  }
+
+  .nav-links a.active::after { opacity: 1; }
+
+  .page { display: none; min-height: 100vh; padding-top: var(--nav-height); }
+  .page.active { display: block; }
+
+  .home-hero {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 48px 72px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .home-tagline {
+    font-family: var(--font-sans);
+    font-size: clamp(16px, 2.4vw, 21px);
+    font-weight: 400;
+    color: var(--gray-dark);
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .work-list { max-width: var(--max-width); margin: 0 auto; padding: 0 48px; }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 160px 1fr 24px;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.15s;
+  }
+
+  .work-thumb {
+    width: 160px;
+    aspect-ratio: 3 / 2;
+    background: #ebebeb;
+    border-radius: 6px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .work-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .work-item:hover { opacity: 0.55; }
+
+  .work-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 10px;
+  }
+
+  .work-title {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+
+  .work-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray-dark);
+    max-width: 520px;
+    line-height: 1.65;
+  }
+
+  .work-arrow {
+    font-size: 16px;
+    color: var(--accent);
+    opacity: 0.6;
+    transition: transform 0.15s, color 0.15s, opacity 0.15s;
+    justify-self: end;
+    align-self: center;
+  }
+
+  .work-item:hover .work-arrow { transform: translateX(3px); opacity: 1; }
+
+  .work-item--minor { padding: 28px 0; grid-template-columns: 1fr 24px; }
+  .work-item--minor .work-title {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--gray-dark);
+  }
+  .work-item--minor .work-desc { color: var(--gray-mid); }
+
+  .work-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 2px 7px;
+    margin-left: 10px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+  }
+
+  .work-list-wrapper {
+    position: relative;
+  }
+
+  .work-gate {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.82);
+    z-index: 10;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 80px;
+  }
+
+  .work-gate.active {
+    display: flex;
+  }
+
+  .work-gate-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 36px;
+    width: 400px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  }
+
+  .work-gate-prompt {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--gray-dark);
+    margin: 0 0 20px;
+  }
+
+  .work-gate-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: #f4f4f4;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: var(--font-sans);
+    color: var(--gray-dark);
+    outline: none;
+  }
+
+  .work-gate-input::placeholder { color: #aaa; }
+
+  .work-gate-error {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: #c0392b;
+    display: none;
+  }
+
+  .work-gate-error.visible { display: block; }
+
+  .work-gate.active ~ .work-list { filter: blur(3px); }
+
+  .case-study-header {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 64px 48px 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    text-decoration: none;
+    margin-bottom: 48px;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  .case-study-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 16px;
+  }
+
+  .case-study-title {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    margin-bottom: 40px;
+  }
+
+  .case-study-meta { display: flex; gap: 48px; flex-wrap: wrap; }
+
+  .meta-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 5px;
+  }
+
+  .meta-value { font-size: 14px; font-weight: 400; color: var(--gray-dark); }
+
+  .case-study-body { max-width: var(--max-width); margin: 0 auto; padding: 0 48px 120px; }
+
+  .cs-section {
+    padding-top: 56px;
+    margin-top: 56px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .cs-section:first-child { border-top: none; margin-top: 0; }
+
+  .cs-section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.75;
+    margin-bottom: 20px;
+  }
+
+  .cs-section h3 {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--black);
+    margin-top: 40px;
+    margin-bottom: 12px;
+  }
+
+  .cs-section h3:first-of-type { margin-top: 0; }
+
+  .cs-section p {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--gray-dark);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    max-width: 640px;
+  }
+
+  .cs-section p:last-child { margin-bottom: 0; }
+
+  .cs-problem-statement {
+    border-left: 2px solid var(--black);
+    padding: 4px 0 4px 24px;
+    margin: 36px 0;
+  }
+
+  .cs-problem-statement p {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--black);
+    line-height: 1.6;
+    max-width: 580px;
+  }
+
+  .about-header {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 48px 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .about-header h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--black);
+  }
+
+  .about-body {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 56px 24px 120px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .about-profile {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .about-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-text {
+    border-left: 1px solid var(--rule);
+    padding-left: 40px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--gray-dark);
+    line-height: 1.85;
+    margin-bottom: 24px;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  footer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 32px 48px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span { font-size: 12px; font-weight: 500; color: var(--gray-mid); }
+
+  footer a.footer-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-mid);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  footer a.footer-link:hover { color: var(--accent); }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .cs-image {
+    margin: 40px 0;
+  }
+
+  .cs-image img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+
+  .cs-caption {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-mid);
+    margin-top: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 640px) {
+    nav {
+      height: auto;
+      padding: 14px 24px;
+      align-items: center;
+    }
+    .nav-name {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0px;
+    }
+    .nav-links { gap: 20px; }
+    .page { padding-top: 68px; }
+    .home-hero, .work-list, .case-study-header,
+    .case-study-body, .about-header, .about-body, footer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .about-body { flex-direction: column; gap: 32px; padding-left: 24px; padding-right: 24px; }
+    .about-profile { width: 100px; height: 100px; }
+    .about-text { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 32px; }
+    .case-study-meta { flex-direction: column; gap: 16px; }
+    .work-item { grid-template-columns: 1fr 24px; }
+    .work-thumb { display: none; }
+    .work-arrow { display: none; }
+    .work-gate { padding: 48px 20px 0; }
+    .work-gate-card { width: 100%; box-sizing: border-box; }
+  }
+
+  /* Lightbox */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .lightbox-overlay.open {
+    display: flex;
+    animation: lb-fade-in 0.2s ease;
+  }
+  @keyframes lb-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 3px;
+    cursor: default;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.5);
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.22); }
+  .cs-image img, .about-profile img { cursor: zoom-in; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" onclick="showPage('home')">Derek Zemper <span class="nav-name-role">Product Designer</span></a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-page="home" class="active">Work</a></li>
+    <li><a onclick="showPage('about')" data-page="about">About</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="home-hero">
+    <p class="home-tagline fade-in">I have a habit of going deeper than the design brief. I like the edge cases, the legal constraints, the dev conversations, and the strategic decisions that make good designs ship.</p>
+  </div>
+  <div class="work-list-wrapper">
+  <div id="work-gate" class="work-gate">
+    <div class="work-gate-card">
+      <p class="work-gate-prompt">Please enter the password written on my resume to view my projects.</p>
+      <input class="work-gate-input" id="work-gate-input" type="text" placeholder="Password" autocomplete="off">
+      <p class="work-gate-error" id="work-gate-error">Incorrect password.</p>
+    </div>
+  </div>
+  <div class="work-list">
+    <a class="work-item fade-in" onclick="showPage('cs-additional-interest'); return false;" href="#">
+      <div class="work-thumb"><img src="images/cover-payments.png" alt="Additional Interest Payment Removal"></div>
+      <div class="work-item-left">
+        <div class="work-label">Chase · Pay Business Lending</div>
+        <div class="work-title">Additional Interest Payment Removal</div>
+        <div class="work-desc">Removing a legacy payment type causing widespread user confusion, while resolving an accessibility failure in a high-stakes financial flow.</div>
+      </div>
+      <div class="work-arrow">→</div>
+    </a>
+    <a class="work-item fade-in" onclick="showPage('cs-guide-review'); return false;" href="#">
+      <div class="work-thumb"><img src="images/cover-conversions.png" alt="Guide-to-Review Conversion"></div>
+      <div class="work-item-left">
+        <div class="work-label">The Infatuation</div>
+        <div class="work-title">Guide-to-Review Conversion</div>
+        <div class="work-desc">Designing and A/B testing CTA treatments to create a more direct path from guide pages to restaurant reviews, increasing guide-to-review conversion by 26%.</div>
+      </div>
+      <div class="work-arrow">→</div>
+    </a>
+    <a class="work-item fade-in" onclick="showPage('cs-notifications'); return false;" href="#">
+      <div class="work-thumb"><img src="images/cover-notifs.png" alt="Notifications"></div>
+      <div class="work-item-left">
+        <div class="work-label">The Infatuation</div>
+        <div class="work-title">Notifications</div>
+        <div class="work-desc">Establishing a net-new notifications system to deepen the relationship between The Infatuation and Chase, and give the platform a scalable channel to reach its users.</div>
+      </div>
+      <div class="work-arrow">→</div>
+    </a>
+    <a class="work-item work-item--minor fade-in" onclick="showPage('cs-starters'); return false;" href="#">
+      <div class="work-item-left">
+        <div class="work-label">Chase · Starters</div>
+        <div class="work-title">Starter Savings Initiative<span class="work-tag">Concept</span></div>
+        <div class="work-desc">Concepting and testing experiences to encourage savings behavior and account deepening among Chase's 18 to 24 year old customer segment.</div>
+      </div>
+      <div class="work-arrow">→</div>
+    </a>
+  </div>
+  </div>
+  <footer>
+    <span>Derek Zemper</span>
+    <a class="footer-link" href="https://www.linkedin.com/in/derek-zemper/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </footer>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+  <div class="about-body">
+    <div class="about-profile fade-in">
+      <img src="images/profile.jpg" alt="Derek Zemper">
+    </div>
+    <div class="about-text">
+      <p class="fade-in">I'm a product designer based in Brooklyn, originally from Columbus, Ohio.</p>
+      <p class="fade-in">In college, I was deciding between studying psychology to help people and studying design to create visually compelling graphics. I realized I didn't have to choose, so I double majored in both at Ohio University. When I discovered UX, I approached a professor with experience in the field and proposed an independent study. That decision changed the direction of my career.</p>
+      <p class="fade-in">What stuck with me from psychology is the part that makes me a better designer: genuine curiosity about how people think, what they need, and where systems fail them. I care about creating work that actually helps people, not just work that looks good.</p>
+      <p class="fade-in">I've spent my career designing for high-stakes financial products at JPMorganChase and consumer experiences at The Infatuation. I make a point of being active in LGBTQ resource groups - these are spaces I believe in and show up for.</p>
+    </div>
+  </div>
+  <footer>
+    <span>Derek Zemper</span>
+    <a class="footer-link" href="https://www.linkedin.com/in/derek-zemper/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </footer>
+</div>
+
+<!-- CASE STUDY: ADDITIONAL INTEREST -->
+<div id="page-cs-additional-interest" class="page">
+  <div class="case-study-header">
+    <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
+    <div class="case-study-label">Chase · Pay Business Lending</div>
+    <h1 class="case-study-title">Additional Interest Payment Removal</h1>
+    <div class="case-study-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Product Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">Mobile App</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Duration</div>
+        <div class="meta-value">4 Months</div>
+      </div>
+    </div>
+  </div>
+  <div class="case-study-body">
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>Pay Business Lending is the mobile payment experience for Chase business lending products, used by small business owners to manage and submit payments on credit lines and loans directly from the Chase mobile app.</p>
+      <p>This project was initiated by the business in response to high call volume from customers requesting payment reversals. The root cause: an "additional interest" payment type that was consistently misunderstood. Customers who intended to pay toward their principal were selecting additional interest instead, a costly and frustrating mistake in a high-stakes financial context. The business decision was clear: remove it. My job was to figure out what that meant for the experience.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">My Role</div>
+      <p>I was the sole product designer on mobile for this initiative, owning the end-to-end design process, from auditing the existing flow and identifying opportunities, to working directly with developers on feasibility, partnering with a content designer on payment type naming and error states, and presenting design options to product stakeholders for sign-off.</p>
+      <p>A separate designer owned the web and desktop experience. Our platforms had distinct requirements, constraints, and development teams, so we worked independently while staying aligned on direction.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">The Problem</div>
+      <p>The payment selection screen for Pay Business Lending offered eleven distinct payment combinations. For most business lending customers, this level of granularity created more confusion than clarity.</p>
+      <div class="cs-image">
+        <img src="images/current-payment-options.png" alt="Payment selection screen showing all 11 payment combinations available to the customer">
+        <p class="cs-caption">Payment selection screen: 11 combinations available to the customer</p>
+      </div>
+      <p>The additional interest payment type was the primary offender. Paying toward additional interest and paying toward additional principal are functionally similar actions, but they produce very different outcomes. Customers were routinely selecting the wrong one and calling in to request reversals. The result was unnecessary cost and frustration on both ends: customers dealing with payment errors on business accounts where mistakes carry real consequences, and Chase absorbing the operational burden of high reversal call volume.</p>
+      <p>Removing additional interest was the right call. But removing a payment type from a complex financial flow is not a simple deletion. It required understanding every state the payment selection screen could be in, every user who might be affected, and every downstream implication for content, accessibility, and consistency across the payment experience.</p>
+      <div class="cs-problem-statement">
+        <p>Business lending customers need clear, unambiguous payment options so they can make informed decisions without risk of error in a high-stakes financial context.</p>
+      </div>
+      <div class="cs-image">
+        <img src="images/future-payment-options.png" alt="Reduced payment options after removing additional interest, from 11 to 5">
+        <p class="cs-caption">Payment options after removing additional interest, from 11 to 5</p>
+      </div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Process</div>
+      <h3>Auditing the existing flow</h3>
+      <p>Before exploring solutions, I needed to fully understand the scope of what I was working with. The existing payment selection screen used a quick select component to display all eleven payment options, some of which contained input fields for custom amounts. This is where I identified an accessibility failure that went beyond the product ask.</p>
+      <p>Quick select is a component pattern that assumes a single tap completes the interaction. When applied to an option containing an input field, it breaks down entirely. Screen readers and tab navigation cannot properly engage with an input field treated as a quick select item, making the experience inaccessible for users relying on assistive technology. This was an ADA compliance failure. Removing additional interest gave me the opportunity to address it.</p>
+      <p>I brought this finding to our ADA partners, who confirmed the issue and provided guidance on the appropriate component pattern. Radio buttons, which are designed to work with input fields and are fully compatible with screen readers and keyboard navigation, became the foundation for the redesigned screen.</p>
+      <div class="cs-image">
+        <img src="images/accessibility-implications.png" alt="Three mobile screens with ADA failure and content update needs annotated in yellow and green">
+        <p class="cs-caption">ADA failure (yellow) and content update needs (green) identified during the audit</p>
+      </div>
+      <h3>Exploring solutions</h3>
+      <p>Rather than designing to a single solution, I developed three options at different levels of scope and brought them to product and technology stakeholders with rough t-shirt sizing for engineering effort.</p>
+      <div class="cs-image">
+        <img src="images/exploring-solutions.png" alt="Five design directions laid out in a grid; green outlines indicate options presented to stakeholders">
+        <p class="cs-caption">Five design directions explored; green outlines indicate options presented to stakeholders</p>
+      </div>
+      <p>The first was our target state: a consolidated flow that combined the payment summary and pay-from screens into a single screen, and added a payment verification screen for consistency with other Chase payment flows. This was the most ambitious option and carried the largest engineering lift.</p>
+      <p>The second was a middle ground: the same screen consolidation, but replacing the verification screen with an updated action sheet that displayed payment totals. Smaller lift, but still a meaningful improvement to the overall flow.</p>
+      <div class="cs-image">
+        <img src="images/option-2-combined-steps.png" alt="Two mobile screens showing payment type, pay-from account, and date combined onto a single screen">
+        <p class="cs-caption">Option 1: payment type, pay-from account, and date consolidated onto a single screen</p>
+      </div>
+      <div class="cs-image">
+        <img src="images/option-2-action-sheet.png" alt="Two mobile screens showing the consolidated payment screen with a confirmation action sheet displaying payment totals" style="width: 360px; display: block; margin: 0 auto;">
+        <p class="cs-caption">Option 2: screen consolidation with an action sheet displaying payment totals in place of a verification screen</p>
+      </div>
+      <p>I presented these two first. When it became clear that capacity constraints made both difficult to prioritize, I introduced a third option: swap the quick select component for radio buttons and remove additional interest. Product selected this option. The target state was documented and left available for future exploration.</p>
+      <div class="cs-image">
+        <img src="images/option-1-radio-buttons.png" alt="Four mobile screens showing radio button payment selection in different states">
+        <p class="cs-caption">Final design: radio buttons replacing the quick select component; the selected direction</p>
+      </div>
+      <h3>Working with developers</h3>
+      <p>I ran my own feasibility calls with the mobile development team throughout the process. Understanding what could and could not be built on the platform shaped how I scoped each option and how I communicated tradeoffs to product. I also conducted visual QA in collaboration with developers to ensure the implemented experience matched the design intent.</p>
+      <h3>Edge cases and content</h3>
+      <p>I identified the full range of edge cases the redesigned screen needed to account for: error states, zero balance states, and the specific scenario where a customer attempts to edit a previously scheduled payment that included additional interest. Each required distinct content and interaction decisions. I looped in our content designer as needed throughout this process.</p>
+      <div class="cs-image">
+        <img src="images/edge-cases.png" alt="Three edge cases: error states, zero balance, and editing a payment previously scheduled with additional interest">
+        <p class="cs-caption">Edge case coverage: error states, zero balance, and editing a legacy scheduled payment</p>
+      </div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Outcomes</div>
+      <p>The redesigned payment selection screen shipped with additional interest removed and radio buttons in place of the previous quick select pattern, resolving the ADA compliance failure identified during the audit.</p>
+      <p>The removal of the additional interest payment type reduced the source of confusion that was driving reversal requests, translating to lower call volume and reduced operational costs for the business. The target state, representing a more significant consolidation of the payment flow, was documented and remains available for the team to revisit when capacity allows.</p>
+    </div>
+  </div>
+  <footer>
+    <span>Derek Zemper</span>
+    <a class="footer-link" href="https://www.linkedin.com/in/derek-zemper/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </footer>
+</div>
+
+<!-- CASE STUDY: NOTIFICATIONS -->
+<div id="page-cs-notifications" class="page">
+  <div class="case-study-header">
+    <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
+    <div class="case-study-label">The Infatuation</div>
+    <h1 class="case-study-title">Notifications</h1>
+    <div class="case-study-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Product Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">Mobile App, Mobile Web, Desktop</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">In Development</div>
+      </div>
+    </div>
+  </div>
+  <div class="case-study-body">
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>The Infatuation is a restaurant discovery platform and editorial brand, operating as a subsidiary of JPMorganChase. Despite that relationship, the connection between the two brands was underleveraged. Chase users with dining benefits had little visibility into how The Infatuation could help them act on those benefits, and The Infatuation had no scalable way to communicate that value to its users.</p>
+      <p>My product manager and I identified this as a meaningful gap. A notifications system could serve as the connective tissue, giving The Infatuation a direct channel to reach users with relevant content, feature announcements, events, and Chase benefit information, while strengthening the perceived relationship between the two brands. For Chase users in particular, surfacing dining benefits within The Infatuation could drive benefit utilization and deepen engagement with both platforms.</p>
+      <p>This project established notifications as a net-new capability within The Infatuation's digital experience, across mobile app, mobile web, and desktop web. It included the design of the notification entry point and container, the enrollment and opt-in model, and a redesigned communications settings experience. The work also required navigating legal constraints tied to Chase's notification policies and coordinating across multiple internal teams.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">My Role</div>
+      <p>I was the sole product designer on this initiative, working alongside a product manager. My responsibilities extended beyond UI design. I contributed to the strategic framing of the feature, helped define the notification category structure, drafted copy for key states of the experience, and designed the legal enrollment model that shaped how users are onboarded into notifications. I collaborated with engineering, editorial, legal, and Chase partners throughout the process.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">The Problem</div>
+      <p>The Infatuation had no native way to communicate with its users at scale. Feature launches, editorial content, events, and Chase benefit information were siloed across external channels like email and social media, with no guarantee of reaching users within the product itself. New features were being introduced through one-off onboarding modals, a pattern that was neither scalable nor effective for building long-term user awareness.</p>
+      <p>For Chase users specifically, The Infatuation already offered a Chase Benefits Hub, giving eligible users a dedicated space to explore their dining benefits. However, there was no mechanism to actively surface those benefits or prompt users to engage with them from within the product. The infrastructure existed, but there was no way to connect users to it in a timely or contextual way.</p>
+      <p>Beyond the business gap, there was a user experience gap. Settings across The Infatuation were fragmented, touched by multiple teams, and not consolidated in any meaningful way. Any new notification preference controls would need a home, and the existing settings experience was not equipped to provide one.</p>
+      <div class="cs-problem-statement">
+        <p>The Infatuation needed a scalable, legally compliant way to reach users within the product, surface Chase dining benefits to eligible users, and give users meaningful control over the communications they receive.</p>
+      </div>
+      <div class="cs-image">
+        <img src="images/notif-hero.png" alt="Notifications feature across mobile app, mobile web, and desktop">
+        <p class="cs-caption">Notifications across mobile app, mobile web, and desktop web</p>
+      </div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Process</div>
+      <h3>Defining the notification categories</h3>
+      <p>Early in the project, my product manager and I worked to define what kinds of notifications The Infatuation would actually send. We landed on four categories: product announcements, editorial content, experiential notifications for events like EEEEEATSCON, and Chase-related benefits for linked users. I advocated specifically for the product announcements category, which had no prior equivalent in the experience. Without a dedicated channel for feature announcements, the platform had been relying on one-off modals to introduce new functionality. A persistent, categorized notifications system offered a more scalable alternative and the potential to increase utilization of new features over time.</p>
+      <h3>Designing the experience</h3>
+      <p>I designed the notifications entry point as a bell icon living in the primary navigation, consistent across mobile app, mobile web, and desktop web. When tapped, a scrollable popover appears displaying the user's notifications, each of which links to a relevant destination within the product. An unread indicator appears on the bell when new notifications are present.</p>
+      <p>During a design review with stakeholders, I received feedback that the web experience should not include a full hub screen and should rely solely on the flyout treatment. While I believed a hub screen would offer better scalability and skimmability as the feature grows, I understood the importance of stakeholder alignment and removed it from V1, keeping the decision documented for future consideration.</p>
+      <div class="cs-image">
+        <img src="images/notif-popover-states.png" alt="Notification popover states: empty, unread, and read">
+        <p class="cs-caption">Popover states: empty, unread notifications, and read notifications</p>
+      </div>
+      <h3>Navigating legal constraints</h3>
+      <p>As I began drafting notification copy and sharing it with legal, two significant constraints surfaced. The first was that Chase users who had opted out of Chase notifications could not be legally enrolled in Chase-related benefit notifications within The Infatuation without their explicit consent. The second was that all notification content would need to pass through AdTrax, Chase's internal content approval process.</p>
+      <p>The legal enrollment constraint had real engineering implications. If we had designed an enrollment model that required checking Chase notification opt-out data, it would have added significant scope to the engineering effort and required coordination with additional Chase teams to identify code ownership. Instead, I designed an enrollment model that automatically enrolls users in all notification categories except Chase-related benefits, which requires explicit opt-in through settings. Users are informed of this through the product announcements category, keeping the experience within The Infatuation's own infrastructure and avoiding the need to pull Chase data entirely.</p>
+      <h3>Redesigning communications settings</h3>
+      <p>Settings within The Infatuation had been touched by multiple teams over time and were not consolidated into a coherent experience. Rather than layering notification preferences on top of an already fragmented structure, I used this project as an opportunity to redesign communications settings holistically. I aligned with the teams that had previously contributed to settings, received buy-in for the changes, and created a consolidated experience with real estate for notification preferences. For users who were not linked to Chase, I designed a CTA within settings to encourage them to link their account directly, so they could access the full benefit notifications feature.</p>
+      <div class="cs-image">
+        <img src="images/notif-settings-before-after.png" alt="Communications settings before and after the redesign">
+        <p class="cs-caption">Communications settings: before and after the redesign</p>
+      </div>
+      <h3>Content and copy</h3>
+      <p>In the absence of a content designer dedicated to this work, I took on the responsibility of drafting copy for the various states of the notifications experience, including empty states, notifications-not-enabled states, and mock notification copy across all four categories. To support this work, I built a content design helper agent through an internal LLM tool, which allowed me to pressure test my copy, think through alternative approaches, and move more efficiently without sacrificing quality. I worked with our editorial partners to review and approve the copy in working sessions, and I flagged the AdTrax requirement to relevant stakeholders so that all parties contributing notification content in the future would be aware of the approval process.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Outcomes</div>
+      <p>Notifications is currently in development. Because the feature has not yet launched, quantitative performance data is not yet available. The decisions made throughout the design process were oriented toward outcomes that will be measurable post-launch, including feature utilization rates, Chase benefit engagement among linked users, and notification opt-in rates by category.</p>
+      <p>Several decisions made during the process had immediate, tangible impact regardless of launch. The enrollment model I designed avoided a significant engineering scoping problem by keeping notification logic within The Infatuation's own infrastructure, removing the need to coordinate with additional Chase teams or pull external data. The communications settings redesign consolidated a fragmented experience that had accumulated across multiple teams, resulting in a cleaner foundation for future preference management. And the AdTrax discovery, surfaced early through legal collaboration, gave the broader team clarity on a content approval requirement that will shape how notifications are written and reviewed going forward.</p>
+      <p>The feature represents a net-new capability for The Infatuation and a foundation that can scale as the relationship between the platform and Chase continues to develop.</p>
+    </div>
+  </div>
+  <footer>
+    <span>Derek Zemper</span>
+    <a class="footer-link" href="https://www.linkedin.com/in/derek-zemper/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </footer>
+</div>
+
+<!-- CASE STUDY: STARTERS -->
+<div id="page-cs-starters" class="page">
+  <div class="case-study-header">
+    <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
+    <div class="case-study-label">Chase · Starters</div>
+    <h1 class="case-study-title">Starter Savings Initiative</h1>
+    <div class="case-study-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Product Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Type</div>
+        <div class="meta-value">Concept Development</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">In Development</div>
+      </div>
+    </div>
+  </div>
+  <div class="case-study-body">
+    <div class="cs-section">
+      <div class="cs-section-label">Overview and Role</div>
+      <p>The Starter segment is Chase's dedicated experience for customers aged 18 to 24, focused on driving growth and deepening their relationship with the bank. The cross-product strategy team identified an opportunity to help the Starters team create experiences that would encourage account deepening, getting young customers to engage more broadly with Chase's suite of products and services, with the goal of building long-term loyalty.</p>
+      <p>I was brought in alongside another designer to collaborate with the Starters team on concept development and research synthesis. We worked in tandem throughout, bouncing ideas off each other and building on each other's thinking.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Process</div>
+      <p>We began by immersing ourselves in existing research and competitive analysis, reviewing how other financial institutions and fintech products approached savings behavior. From there, we facilitated a Crazy 8's workshop with product and design stakeholders, generating 50 ideas in 20 minutes across themes like gamification, rewards, goal visualization, and social accountability. The workshop surfaced two strategic directions worth pursuing: rewards and benefits, and monitoring and communications.</p>
+      <div class="cs-image">
+        <img src="images/starters-workshop.png" alt="Workshop session with product and design stakeholders reviewing concepts">
+        <p class="cs-caption">Crazy 8's workshop with product and design stakeholders</p>
+      </div>
+      <p>Working collaboratively, we developed six concepts across those two themes, each designed to encourage healthier saving habits among young, paycheck-to-paycheck customers. We then partnered with a researcher to test thirteen concepts with real Starter users through an unmoderated usability study, synthesizing the findings and shaping the story for our handoff. Our final deliverable was a set of concepts ready for further ideation and development, along with a clear recommendation for where the team should focus next.</p>
+      <div class="cs-image">
+        <img src="images/starters-concepts.png" alt="Three iPhone mockups showing Transfer money shortcut, Savings Goal Tracker, and Transaction Activity concepts">
+        <p class="cs-caption">Sample concepts developed across the rewards and monitoring themes</p>
+      </div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Outcomes</div>
+      <p>The work delivered a validated foundation for the Starters team to build from. Designing within the constraints of a large banking organization required careful consideration of technical feasibility, privacy implications of surfacing financial data, and the behavioral realities of a segment with limited financial flexibility. The team is currently developing features informed by this work, reflecting the value of the concepts we delivered.</p>
+    </div>
+  </div>
+  <footer>
+    <span>Derek Zemper</span>
+    <a class="footer-link" href="https://www.linkedin.com/in/derek-zemper/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </footer>
+</div>
+
+<!-- CASE STUDY: GUIDE-TO-REVIEW CONVERSION -->
+<div id="page-cs-guide-review" class="page">
+  <div class="case-study-header">
+    <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
+    <div class="case-study-label">The Infatuation</div>
+    <h1 class="case-study-title">Guide-to-Review Conversion</h1>
+    <div class="case-study-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Product Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">Mobile App, Mobile Web, Desktop Web</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Duration</div>
+        <div class="meta-value">2 Months</div>
+      </div>
+    </div>
+  </div>
+  <div class="case-study-body">
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>The Infatuation is an editorial platform built around restaurant recommendations. Its two core editorial products are guides, which group restaurants by theme or neighborhood, and reviews, which give readers a detailed take on a specific restaurant. Both are central to the experience, but users browsing guides weren't converting to reviews at the rate the business expected.</p>
+      <p>The opportunity was clear: reduce the friction between a guide and the review behind each restaurant listed in it. I designed two CTA treatments to create that path more explicitly, tested them against control in an A/B experiment, and shipped the winning variant.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">My Role</div>
+      <p>I was the sole product designer on this project, working with a PM and a development team. I owned the design process end to end, from early exploration through critique and iteration to final specs. The project ran for roughly two months.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">The Problem</div>
+      <p>Users browsing guide pages had no direct path to the review for a given restaurant. The only way to get there was to tap the venue title, which wasn't clearly interactive; the hover state indicating it was a link was only visible on desktop. As a result, users who might have continued deeper into the product weren't doing so.</p>
+      <p>The guide page also featured a lightbox, an expanded image treatment that users could open from any restaurant listing. The lightbox had an existing CTA pointing to the review, but it wasn't prominent enough to drive meaningful engagement.</p>
+      <p>The gap wasn't a content problem. The reviews existed. Users just weren't finding a clear route to them.</p>
+      <div class="cs-problem-statement">
+        <p>Guide pages needed a more explicit path to reviews, surfaced at the moments users were most likely to want one.</p>
+      </div>
+      <div class="cs-image">
+        <img src="images/gr-app-before-after.png" alt="App lightbox before and after, with the improved CTA replacing the original buried link" style="width: 420px; display: block; margin: 0 auto;">
+        <p class="cs-caption">App lightbox: before and after the improved CTA treatment</p>
+      </div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Process</div>
+      <h3>Identifying the opportunity</h3>
+      <p>The initial brief was focused on improving the lightbox CTA, which existed but wasn't driving meaningful engagement. As I dug into the guide page experience, I identified a broader opportunity: the caption area on each restaurant listing had no CTA at all. Users had no explicit prompt to go read the review from the most prominent part of the guide page. Adding one became a natural extension of the work.</p>
+      <p>I worked through multiple iterations of both treatments and brought them to group critiques with other designers before landing on a direction. Critique pushed me to sharpen the hierarchy of the caption CTA and reconsider how the lightbox CTA was weighted relative to the rest of the lightbox content.</p>
+      <div class="cs-image">
+        <img src="images/gr-app-iterations.png" alt="Four iterations of the guide card caption CTA, evolving from 'Go to the Review' to 'Read the full review'">
+        <p class="cs-caption">Caption CTA iterations: refining hierarchy and label through critique</p>
+      </div>
+      <h3>Designing and testing the variants</h3>
+      <p>The experiment was structured around two variants. Variant A combined a new caption CTA on the guide page with an improved lightbox CTA. Variant B added a third touchpoint: a full-screen CTA at the end of the image carousel in the lightbox.</p>
+      <p>Both were tested against control in an A/B experiment across the mobile app, mobile web, and desktop web.</p>
+      <div class="cs-image">
+        <img src="images/gr-experiment.png" alt="Three rows showing Control, Variant A, and Variant B guide page and lightbox states side by side">
+        <p class="cs-caption">A/B experiment: Control, Variant A (caption + lightbox CTA), and Variant B (+ full-screen carousel CTA)</p>
+      </div>
+      <h3>The decision to ship Variant A</h3>
+      <p>The experiment results showed Variant B performing slightly ahead of Variant A, but the difference was marginal and not strong enough to justify the added complexity. The more important consideration was that the final full-screen lightbox CTA carried real risk. A user reaching the end of a carousel reasonably expects another image, not a CTA screen. Presenting one there felt like it could erode trust rather than build it.</p>
+      <div class="cs-image">
+        <img src="images/gr-app-carousel.png" alt="Variant B's full-screen end-of-carousel CTA in the app: Still interested in The Phreys? Read the Review" style="width: 320px; display: block; margin: 0 auto;">
+        <p class="cs-caption">Variant B's full-screen carousel CTA in the app, an interaction pattern users don't expect at the end of an image carousel</p>
+      </div>
+      <p>Combined with the added development complexity Variant B required, the case for shipping Variant A was clear. It delivered nearly identical lift with less implementation cost and without the interaction pattern we weren't confident in.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Outcomes</div>
+      <p>Variant A shipped across the mobile app, mobile web, and desktop web. Guide-to-review conversion rate increased by 26%, and the "Read the Review" click rate increased by 112%, driven primarily by the new caption CTA. Venue title click rate dropped 15%, which was expected: users now had a more explicit path to the review, making the title itself a less necessary tap.</p>
+      <p>Retention at seven days was unchanged, confirming that the new CTAs weren't creating a pattern users bounced from.</p>
+    </div>
+  </div>
+  <footer>
+    <span>Derek Zemper</span>
+    <a class="footer-link" href="https://www.linkedin.com/in/derek-zemper/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+
+  function openLightbox(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+
+  lb.addEventListener('click', function(e) {
+    if (e.target === lb) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  document.addEventListener('click', function(e) {
+    const img = e.target.closest('.cs-image img, .about-profile img');
+    if (img) openLightbox(img.src, img.alt);
+  });
+
+  const GATE_PASSWORD = 'zemper';
+  const gate = document.getElementById('work-gate');
+  const gateInput = document.getElementById('work-gate-input');
+  const gateError = document.getElementById('work-gate-error');
+
+  function isUnlocked() {
+    return sessionStorage.getItem('portfolio-unlocked') === '1';
+  }
+
+  function showGate() {
+    if (!isUnlocked()) {
+      gate.classList.add('active');
+      gateInput.value = '';
+      gateError.classList.remove('visible');
+      setTimeout(() => gateInput.focus(), 50);
+    }
+  }
+
+  gateInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      if (gateInput.value.trim().toLowerCase() === GATE_PASSWORD) {
+        sessionStorage.setItem('portfolio-unlocked', '1');
+        gate.classList.remove('active');
+        gateError.classList.remove('visible');
+      } else {
+        gateError.classList.add('visible');
+        gateInput.value = '';
+      }
+    } else {
+      gateError.classList.remove('visible');
+    }
+  });
+
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + id);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      target.querySelectorAll('.fade-in').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = '';
+        el.style.animationDelay = (0.05 + i * 0.07) + 's';
+      });
+    }
+    const activeNav = id === 'about' ? 'about' : 'home';
+    document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === activeNav);
+    });
+    if (id === 'home') showGate();
+  }
+
+  showGate();
+</script>
+</body>
+</html>
