@@ -476,6 +476,34 @@
 
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
+  .cs-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent);
+    transition: color 0.15s;
+  }
+
+  .cs-link:hover { color: var(--accent); }
+
+  .cs-banner {
+    background: #f5f5f5;
+    border-left: 2px solid var(--gray-mid);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-top: 48px;
+    margin-bottom: 0;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+
+  .cs-banner + .cs-section {
+    border-top: none;
+    margin-top: 0;
+  }
+
   .cs-image {
     margin: 40px 0;
   }
@@ -624,6 +652,14 @@
         <div class="work-label">The Infatuation</div>
         <div class="work-title"><span class="work-title-icon">🔔</span>Notifications</div>
         <div class="work-desc">Establishing a net-new notifications system to deepen the relationship between The Infatuation and Chase, and give the platform a scalable channel to reach its users.</div>
+      </div>
+      <div class="work-arrow">→</div>
+    </a>
+    <a class="work-item work-item--minor fade-in" onclick="showPage('cs-ecla'); return false;" href="#">
+      <div class="work-item-left">
+        <div class="work-label">The Infatuation</div>
+        <div class="work-title">Vibecoded Prototype & Navigation Research<span class="work-tag">In Progress</span></div>
+        <div class="work-desc">Running live research at EEEEEATSCON to test navigation structure against real user behavior and diagnose low mobile app adoption.</div>
       </div>
       <div class="work-arrow">→</div>
     </a>
@@ -836,6 +872,63 @@
       <p>Notifications is currently in development. Because the feature has not yet launched, quantitative performance data is not yet available. The decisions made throughout the design process were oriented toward outcomes that will be measurable post-launch, including feature utilization rates, Chase benefit engagement among linked users, and notification opt-in rates by category.</p>
       <p>Several decisions made during the process had immediate, tangible impact regardless of launch. The enrollment model I designed avoided a significant engineering scoping problem by keeping notification logic within The Infatuation's own infrastructure, removing the need to coordinate with additional Chase teams or pull external data. The communications settings redesign consolidated a fragmented experience that had accumulated across multiple teams, resulting in a cleaner foundation for future preference management. And the AdTrax discovery, surfaced early through legal collaboration, gave the broader team clarity on a content approval requirement that will shape how notifications are written and reviewed going forward.</p>
       <p>The feature represents a net-new capability for The Infatuation and a foundation that can scale as the relationship between the platform and Chase continues to develop.</p>
+    </div>
+  </div>
+  <footer>
+    <span>Derek Zemper</span>
+    <a class="footer-link" href="https://www.linkedin.com/in/derek-zemper/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </footer>
+</div>
+
+<!-- CASE STUDY: MOBILE NAVIGATION RESEARCH -->
+<div id="page-cs-ecla" class="page">
+  <div class="case-study-header">
+    <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
+    <div class="case-study-label">The Infatuation</div>
+    <h1 class="case-study-title">Vibecoded Prototype & Navigation Research</h1>
+    <div class="case-study-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Product Designer, UX Researcher</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">In Progress</div>
+      </div>
+    </div>
+  </div>
+  <div class="case-study-body">
+    <p class="cs-banner">This project is ongoing and no final design assets exist yet. Visuals will be added upon completion.</p>
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>The Infatuation's mobile app had a problem: adoption was significantly lower than mobile web, and we suspected navigation was a core reason. Features were buried, flows were nested, and the structure didn't match how users actually thought about finding a restaurant.</p>
+      <p><a href="https://www.eeeeeatscon.com/" target="_blank" rel="noopener noreferrer" class="cs-link">EEEEEATSCON</a> is The Infatuation's annual food festival, built in the spirit of a music festival but with restaurants as the headliners. It gave us direct access to a concentrated audience of engaged food people, which made it an ideal place to run live comparative research.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">My Role</div>
+      <p>I led this project end to end, from prototyping through research planning, facilitation, and synthesis. I walked the plan through the full product and design team before going to field, and ran sessions alongside a product manager at EEEEEATSCON.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">The Problem</div>
+      <p>Low app adoption relative to mobile web pointed to friction in the core experience. Our hypothesis: the navigation structure was preventing users from completing their primary jobs to be done. We needed to test that assumption against real behavior.</p>
+      <div class="cs-problem-statement">
+        <p>The navigation structure was preventing users from completing their primary jobs to be done. We needed to test that assumption against real behavior.</p>
+      </div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Process</div>
+      <h3>Building the prototype</h3>
+      <p>I vibecoded a functional prototype using Claude and GitHub Copilot in VS Code, grounded in UX heuristics and assumptions about what the navigation should prioritize. A developer loaded it on device so we could run a true side-by-side comparison against the production build.</p>
+      <h3>Going to field</h3>
+      <p>We took the research to EEEEEATSCON, intercepting attendees over two days and offering a free meal token in exchange for 10 minutes. 16 participants completed two-part sessions: first, a conversation about how they find restaurants and what platforms they use; then a task where they were asked to find a restaurant in a new city using either the prototype or production. Sessions were screen-recorded and audio was captured and summarized using Granola.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Findings</div>
+      <p>Users responded positively to bottom navigation and wanted clearer separation between features. Benefits information didn't belong in primary navigation. The key tradeoff: moving the map off the opening screen reduced discoverability, even though it cleaned up the initial experience. Given that map and search were users' primary jobs to be done, that tension will need to be resolved in the final design direction.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Outcomes</div>
+      <p>Research synthesis is currently in progress. This case study will be updated with final outcomes once the work is complete.</p>
     </div>
   </div>
   <footer>
