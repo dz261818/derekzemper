@@ -252,8 +252,14 @@
     margin: 0 0 20px;
   }
 
+  .work-gate-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .work-gate-input {
-    width: 100%;
+    flex: 1;
     box-sizing: border-box;
     background: #f4f4f4;
     border: none;
@@ -266,6 +272,22 @@
   }
 
   .work-gate-input::placeholder { color: #aaa; }
+
+  .work-gate-btn {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+
+  .work-gate-btn:hover { opacity: 0.75; }
 
   .work-gate-error {
     margin: 10px 0 0;
@@ -623,7 +645,10 @@
   <div id="work-gate" class="work-gate">
     <div class="work-gate-card">
       <p class="work-gate-prompt">Please enter the password written on my resume to view my projects.</p>
-      <input class="work-gate-input" id="work-gate-input" type="text" placeholder="Password" autocomplete="off">
+      <div class="work-gate-row">
+        <input class="work-gate-input" id="work-gate-input" type="text" placeholder="Password" autocomplete="off">
+        <button class="work-gate-btn" id="work-gate-btn">Enter</button>
+      </div>
       <p class="work-gate-error" id="work-gate-error">Incorrect password.</p>
     </div>
   </div>
@@ -1125,20 +1150,26 @@
     }
   }
 
+  function submitGate() {
+    if (gateInput.value.trim().toLowerCase() === GATE_PASSWORD) {
+      sessionStorage.setItem('portfolio-unlocked', '1');
+      gate.classList.remove('active');
+      gateError.classList.remove('visible');
+    } else {
+      gateError.classList.add('visible');
+      gateInput.value = '';
+    }
+  }
+
   gateInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
-      if (gateInput.value.trim().toLowerCase() === GATE_PASSWORD) {
-        sessionStorage.setItem('portfolio-unlocked', '1');
-        gate.classList.remove('active');
-        gateError.classList.remove('visible');
-      } else {
-        gateError.classList.add('visible');
-        gateInput.value = '';
-      }
+      submitGate();
     } else {
       gateError.classList.remove('visible');
     }
   });
+
+  document.getElementById('work-gate-btn').addEventListener('click', submitGate);
 
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
