@@ -601,6 +601,14 @@
       </div>
       <div class="work-arrow">→</div>
     </a>
+    <a class="work-item work-item--minor fade-in" onclick="showPage('cs-travel-hub'); return false;" href="#">
+      <div class="work-item-left">
+        <div class="work-label">The Infatuation</div>
+        <div class="work-title">Travel Hub Redesign & Search City Switching<span class="work-tag">In Progress</span></div>
+        <div class="work-desc">Redesigning the Travel Hub to lead with imagery and scale, and adding a deliberate city-switching path to search for users with out-of-city intent.</div>
+      </div>
+      <div class="work-arrow">→</div>
+    </a>
     <a class="work-item work-item--minor fade-in" onclick="showPage('cs-starters'); return false;" href="#">
       <div class="work-item-left">
         <div class="work-label">Chase · Starters</div>
@@ -867,6 +875,64 @@
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
       <p>Research synthesis is currently in progress. This case study will be updated with final outcomes once the work is complete.</p>
+    </div>
+  </div>
+  <footer>
+    <span>Derek Zemper</span>
+    <a class="footer-link" href="https://www.linkedin.com/in/derek-zemper/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </footer>
+</div>
+
+<!-- CASE STUDY: TRAVEL HUB -->
+<div id="page-cs-travel-hub" class="page">
+  <div class="case-study-header">
+    <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
+    <div class="case-study-label">The Infatuation</div>
+    <h1 class="case-study-title">Travel Hub Redesign & Search City Switching</h1>
+    <div class="case-study-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Product Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">Web, Mobile Web, App</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">Built, waiting for release</div>
+      </div>
+    </div>
+  </div>
+  <div class="case-study-body">
+    <p class="cs-banner">This release is ongoing and there are no final screens to share yet.</p>
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>The Infatuation's editorial team was planning a travel marketing push and wanted the Travel Hub to match the moment. The hub is the entry point for users planning trips, surfacing city guides and destination content across the site, but the existing page undersold the breadth of cities we cover and the linked See All Cities page gave users little to explore. I redesigned both surfaces across web, mobile web, and app to lead with imagery and make the city catalog feel expansive: a visual grid on the hub and a filterable See All Cities page.</p>
+      <p>While working through the travel experience, I identified a separate problem worth solving. The Infatuation is a city-specific product — your content experience is tied to whatever city you're set to. A user could technically switch cities by clicking into a venue review from the "Outside of [city]" section in search results, but they'd land on the review itself, not the city section front. The only deliberate path to change your city was in the navigation, which was buried in the app. Search is where users with intent go first, and it had no way to meet that intent directly.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">My Role</div>
+      <p>Sole designer. The travel hub and city grid work was in my original scope. I identified the search gap independently, made the case for including it, and it was added.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">The Problem</div>
+      <p>Users searching for a city they don't live in had no clear way to act on that intent. Typing "Austin" into search would show Austin content in an "Outside of New York" section, but there was no path to shift your experience to Austin from there. The workaround required either hunting through the nav or stumbling into the right search result and landing somewhere unexpected.</p>
+      <div class="cs-problem-statement">
+        <p>Users with out-of-city intent had no deliberate path to act on it from search — the most natural place on the product to express that intent.</p>
+      </div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Process</div>
+      <h3>Travel hub redesign</h3>
+      <p>The travel redesign itself was relatively straightforward: audit the existing hub, identify what was underselling the catalog, design a city grid with photography that communicated scale, and build a filterable See All Cities page to make exploration feel less like a list and more like a browse.</p>
+      <h3>Search city switching</h3>
+      <p>The search work required more cross-functional coordination. I worked with engineering to define the triggering logic: the CTA surfaces when a user has typed at least three letters matching a city we write about, accounting for abbreviations so that "NYC" and "New York" both work.</p>
+      <p>We also had to handle a specific layout edge case. The "Outside of [city]" section, where the CTA lives, can collapse when there are enough local results. A user typing an exact city name could easily miss it. I added a second placement directly beneath the search bar that triggers on an exact match, so the prompt is visible when the intent is clearest.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Outcomes</div>
+      <p>Both the travel redesign and the search city-switching work are built and waiting on the next release. The search work adds a deliberate action path for a behavior the product previously had no answer for. Users with out-of-city intent can now act on it from the most natural place on the site.</p>
     </div>
   </div>
   <footer>
