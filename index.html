@@ -671,7 +671,7 @@
     <div class="cs-section">
       <div class="cs-section-label">Overview</div>
       <p>Pay Business Lending is the mobile payment experience for Chase business lending products, used by small business owners to manage and submit payments on credit lines and loans directly from the Chase mobile app.</p>
-      <p>This project was initiated by the business in response to high call volume from customers requesting payment reversals. The root cause: an "additional interest" payment type that was consistently misunderstood. Customers who intended to pay toward their principal were selecting additional interest instead, a costly and frustrating mistake in a high-stakes financial context. The business decision was clear: remove it. My job was to figure out what that meant for the experience.</p>
+      <p>This project was initiated by the business to address a persistent customer experience problem. The root cause: an "additional interest" payment type that was consistently misunderstood. Customers who intended to pay toward their principal were selecting additional interest instead -a costly mistake in a high-stakes financial context that the business needed to resolve. The business decision was clear: remove it. My job was to figure out what that meant for the experience.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">My Role</div>
@@ -685,7 +685,7 @@
         <img src="images/current-payment-options.png" alt="Payment selection screen showing all 11 payment combinations available to the customer">
         <p class="cs-caption">Payment selection screen: 11 combinations available to the customer</p>
       </div>
-      <p>The additional interest payment type was the primary offender. Paying toward additional interest and paying toward additional principal are functionally similar actions, but they produce very different outcomes. Customers were routinely selecting the wrong one and calling in to request reversals. The result was unnecessary cost and frustration on both ends: customers dealing with payment errors on business accounts where mistakes carry real consequences, and Chase absorbing the operational burden of high reversal call volume.</p>
+      <p>The additional interest payment type was the primary offender. Paying toward additional interest and paying toward additional principal are functionally similar actions, but they produce very different outcomes. Customers were routinely selecting the wrong option - a costly mistake in a high-stakes financial context where payment errors on business accounts carry real consequences.</p>
       <p>Removing additional interest was the right call. But removing a payment type from a complex financial flow is not a simple deletion. It required understanding every state the payment selection screen could be in, every user who might be affected, and every downstream implication for content, accessibility, and consistency across the payment experience.</p>
       <div class="cs-problem-statement">
         <p>Business lending customers need clear, unambiguous payment options so they can make informed decisions without risk of error in a high-stakes financial context.</p>
@@ -699,11 +699,11 @@
       <div class="cs-section-label">Process</div>
       <h3>Auditing the existing flow</h3>
       <p>Before exploring solutions, I needed to fully understand the scope of what I was working with. The existing payment selection screen used a quick select component to display all eleven payment options, some of which contained input fields for custom amounts. This is where I identified an accessibility failure that went beyond the product ask.</p>
-      <p>Quick select is a component pattern that assumes a single tap completes the interaction. When applied to an option containing an input field, it breaks down entirely. Screen readers and tab navigation cannot properly engage with an input field treated as a quick select item, making the experience inaccessible for users relying on assistive technology. This was an ADA compliance failure. Removing additional interest gave me the opportunity to address it.</p>
-      <p>I brought this finding to our ADA partners, who confirmed the issue and provided guidance on the appropriate component pattern. Radio buttons, which are designed to work with input fields and are fully compatible with screen readers and keyboard navigation, became the foundation for the redesigned screen.</p>
+      <p>Quick select is a component pattern that assumes a single tap completes the interaction. When applied to an option containing an input field, it breaks down entirely. Screen readers and tab navigation cannot properly engage with an input field treated as a quick select item, making the experience inaccessible for users relying on assistive technology. This was an accessibility gap. Removing additional interest gave me the opportunity to address it.</p>
+      <p>I brought this finding to our accessibility specialists, who confirmed the issue and provided guidance on the appropriate component pattern. Radio buttons, which are designed to work with input fields and are fully compatible with screen readers and keyboard navigation, became the foundation for the redesigned screen.</p>
       <div class="cs-image">
         <img src="images/accessibility-implications.png" alt="Three mobile screens with ADA failure and content update needs annotated in yellow and green">
-        <p class="cs-caption">ADA failure (yellow) and content update needs (green) identified during the audit</p>
+        <p class="cs-caption">Accessibility gap (yellow) and content update needs (green) identified during the audit</p>
       </div>
       <h3>Exploring solutions</h3>
       <p>Rather than designing to a single solution, I developed three options at different levels of scope and brought them to product and technology stakeholders with rough t-shirt sizing for engineering effort.</p>
@@ -733,8 +733,8 @@
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
-      <p>The redesigned payment selection screen shipped with additional interest removed and radio buttons in place of the previous quick select pattern, resolving the ADA compliance failure identified during the audit.</p>
-      <p>The removal of the additional interest payment type reduced the source of confusion that was driving reversal requests, translating to lower call volume and reduced operational costs for the business. The target state, representing a more significant consolidation of the payment flow, was documented and remains available for the team to revisit when capacity allows.</p>
+      <p>The redesigned payment selection screen shipped with additional interest removed and radio buttons in place of the previous quick select pattern, resolving the accessibility gap identified during the audit.</p>
+      <p>The removal of the additional interest payment type reduced the source of confusion that was driving reversal requests. The target state, representing a more significant consolidation of the payment flow, was documented and remains available for the team to revisit when capacity allows.</p>
     </div>
   </div>
   <footer>
@@ -800,8 +800,8 @@
         <p class="cs-caption">Popover states: empty, unread notifications, and read notifications</p>
       </div>
       <h3>Navigating legal constraints</h3>
-      <p>As I began drafting notification copy and sharing it with legal, two significant constraints surfaced. The first was that Chase users who had opted out of Chase notifications could not be legally enrolled in Chase-related benefit notifications within The Infatuation without their explicit consent. The second was that all notification content would need to pass through AdTrax, Chase's internal content approval process.</p>
-      <p>The legal enrollment constraint had real engineering implications. If we had designed an enrollment model that required checking Chase notification opt-out data, it would have added significant scope to the engineering effort and required coordination with additional Chase teams to identify code ownership. Instead, I designed an enrollment model that automatically enrolls users in all notification categories except Chase-related benefits, which requires explicit opt-in through settings. Users are informed of this through the product announcements category, keeping the experience within The Infatuation's own infrastructure and avoiding the need to pull Chase data entirely.</p>
+      <p>As I began drafting notification copy and sharing it with legal, two significant constraints surfaced. Legal review surfaced constraints around how Chase-linked users could be enrolled in certain notification categories, and separately, that all notification content would need to pass through an internal content approval process.</p>
+      <p>The enrollment constraint had real engineering implications. If we had designed an enrollment model that required pulling external data to check user opt-out status, it would have added significant scope to the engineering effort and required coordination with additional teams. Instead, I designed an enrollment model that automatically enrolls users in all notification categories except Chase-related benefits, which requires explicit opt-in through settings. Users are informed of this through the product announcements category, keeping the implementation within The Infatuation's own infrastructure.</p>
       <h3>Redesigning communications settings</h3>
       <p>Settings within The Infatuation had been touched by multiple teams over time and were not consolidated into a coherent experience. Rather than layering notification preferences on top of an already fragmented structure, I used this project as an opportunity to redesign communications settings holistically. I aligned with the teams that had previously contributed to settings, received buy-in for the changes, and created a consolidated experience with real estate for notification preferences. For users who were not linked to Chase, I designed a CTA within settings to encourage them to link their account directly, so they could access the full benefit notifications feature.</p>
       <div class="cs-image">
@@ -809,12 +809,12 @@
         <p class="cs-caption">Communications settings: before and after the redesign</p>
       </div>
       <h3>Content and copy</h3>
-      <p>In the absence of a content designer dedicated to this work, I took on the responsibility of drafting copy for the various states of the notifications experience, including empty states, notifications-not-enabled states, and mock notification copy across all four categories. To support this work, I built a content design helper agent through an internal LLM tool, which allowed me to pressure test my copy, think through alternative approaches, and move more efficiently without sacrificing quality. I worked with our editorial partners to review and approve the copy in working sessions, and I flagged the AdTrax requirement to relevant stakeholders so that all parties contributing notification content in the future would be aware of the approval process.</p>
+      <p>In the absence of a content designer dedicated to this work, I took on the responsibility of drafting copy for the various states of the notifications experience, including empty states, notifications-not-enabled states, and mock notification copy across all four categories. To support this work, I built a content design helper agent through an internal LLM tool, which allowed me to pressure test my copy, think through alternative approaches, and move more efficiently without sacrificing quality. I worked with our editorial partners to review and approve the copy in working sessions, and I flagged the content approval requirement to relevant stakeholders so that all parties contributing notification content in the future would be aware of the process.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
       <p>Notifications is currently in development. Because the feature has not yet launched, quantitative performance data is not yet available. The decisions made throughout the design process were oriented toward outcomes that will be measurable post-launch, including feature utilization rates, Chase benefit engagement among linked users, and notification opt-in rates by category.</p>
-      <p>Several decisions made during the process had immediate, tangible impact regardless of launch. The enrollment model I designed avoided a significant engineering scoping problem by keeping notification logic within The Infatuation's own infrastructure, removing the need to coordinate with additional Chase teams or pull external data. The communications settings redesign consolidated a fragmented experience that had accumulated across multiple teams, resulting in a cleaner foundation for future preference management. And the AdTrax discovery, surfaced early through legal collaboration, gave the broader team clarity on a content approval requirement that will shape how notifications are written and reviewed going forward.</p>
+      <p>Several decisions made during the process had immediate, tangible impact regardless of launch. The enrollment model I designed avoided a significant engineering scoping problem by keeping notification logic within The Infatuation's own infrastructure, removing the need to coordinate with additional Chase teams or pull external data. The communications settings redesign consolidated a fragmented experience that had accumulated across multiple teams, resulting in a cleaner foundation for future preference management. Early legal collaboration surfaced a content approval requirement that gave the broader team clarity on how notifications would be written and reviewed going forward.</p>
       <p>The feature represents a net-new capability for The Infatuation and a foundation that can scale as the relationship between the platform and Chase continues to develop.</p>
     </div>
   </div>
@@ -907,7 +907,7 @@
     <div class="cs-section">
       <div class="cs-section-label">Overview</div>
       <p>The Infatuation's editorial team was planning a travel marketing push and wanted the Travel Hub to match the moment. The hub is the entry point for users planning trips, surfacing city guides and destination content across the site, but the existing page undersold the breadth of cities we cover and the linked See All Cities page gave users little to explore. I redesigned both surfaces across web, mobile web, and app to lead with imagery and make the city catalog feel expansive: a visual grid on the hub and a filterable See All Cities page.</p>
-      <p>While working through the travel experience, I identified a separate problem worth solving. The Infatuation is a city-specific product — your content experience is tied to whatever city you're set to. A user could technically switch cities by clicking into a venue review from the "Outside of [city]" section in search results, but they'd land on the review itself, not the city section front. The only deliberate path to change your city was in the navigation, which was buried in the app. Search is where users with intent go first, and it had no way to meet that intent directly.</p>
+      <p>While working through the travel experience, I identified a separate problem worth solving. The Infatuation is a city-specific product -your content experience is tied to whatever city you're set to. A user could technically switch cities by clicking into a venue review from the "Outside of [city]" section in search results, but they'd land on the review itself, not the city section front. The only deliberate path to change your city was in the navigation, which was buried in the app. Search is where users with intent go first, and it had no way to meet that intent directly.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">My Role</div>
@@ -917,7 +917,7 @@
       <div class="cs-section-label">The Problem</div>
       <p>Users searching for a city they don't live in had no clear way to act on that intent. Typing "Austin" into search would show Austin content in an "Outside of New York" section, but there was no path to shift your experience to Austin from there. The workaround required either hunting through the nav or stumbling into the right search result and landing somewhere unexpected.</p>
       <div class="cs-problem-statement">
-        <p>Users with out-of-city intent had no deliberate path to act on it from search — the most natural place on the product to express that intent.</p>
+        <p>Users with out-of-city intent had no deliberate path to act on it from search - the most natural place on the product to express that intent.</p>
       </div>
     </div>
     <div class="cs-section">
