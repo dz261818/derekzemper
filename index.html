@@ -14,14 +14,14 @@
 
   :root {
     --black: #0a0a0a;
-    --white: #ffffff;
+    --white: #fffdf9;
     --gray-light: #e4e4e4;
     --gray-mid: #999999;
     --gray-dark: #444444;
     --rule: #e0e0e0;
     --font-serif: 'Libre Baskerville', Georgia, serif;
     --font-sans: 'DM Sans', system-ui, sans-serif;
-    --max-width: 800px;
+    --max-width: 960px;
     --nav-height: 60px;
     --accent: #a8714f;
   }
@@ -53,20 +53,20 @@
 
   .nav-name {
     font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 700;
     color: var(--black);
     text-decoration: none;
     cursor: pointer;
     display: flex;
     align-items: baseline;
-    gap: 8px;
+    gap: 10px;
   }
 
   .nav-name-role {
-    font-size: 13px;
-    font-weight: 500;
-    color: #777;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6e6e6e;
   }
 
   .nav-links { display: flex; gap: 32px; list-style: none; }
@@ -127,19 +127,20 @@
 
   .work-item {
     display: grid;
-    grid-template-columns: 160px 1fr 24px;
+    grid-template-columns: 240px 1fr 24px;
     align-items: center;
     gap: 24px;
-    padding: 40px 0;
+    padding: 40px 48px;
+    margin: 0 -48px;
     border-bottom: 1px solid var(--rule);
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    transition: opacity 0.15s;
+    transition: background 0.2s;
   }
 
   .work-thumb {
-    width: 160px;
+    width: 240px;
     aspect-ratio: 3 / 2;
     background: #ebebeb;
     border-radius: 6px;
@@ -152,9 +153,11 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.35s ease;
   }
 
-  .work-item:hover { opacity: 0.55; }
+  .work-item:hover { background: rgba(0, 0, 0, 0.025); }
+  .work-item:hover .work-thumb img { transform: scale(1.04); }
 
   .work-label {
     font-size: 11px;
@@ -195,7 +198,7 @@
 
   .work-title-icon { display: none; margin-right: 7px; font-style: normal; }
 
-  .work-item--minor { padding: 28px 0; grid-template-columns: 1fr 24px; }
+  .work-item--minor { padding: 28px 48px; grid-template-columns: 1fr 24px; }
   .work-item--minor .work-title {
     font-family: var(--font-sans);
     font-size: 17px;
@@ -214,22 +217,46 @@
     border: 1px solid var(--rule);
     border-radius: 3px;
     padding: 2px 7px;
-    margin-left: 10px;
-    vertical-align: middle;
-    position: relative;
-    top: -2px;
+    margin-bottom: 8px;
   }
 
   .work-list-wrapper {
     position: relative;
   }
 
-
-  .case-study-header {
+  .expertise-section {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 64px 48px 56px;
-    border-bottom: 1px solid var(--rule);
+    padding: 56px 48px 80px;
+  }
+
+  .expertise-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 28px;
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 32px;
+  }
+
+  .expertise-item {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-dark);
+    line-height: 1.4;
+  }
+
+
+  .case-study-header {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 64px 48px 24px;
   }
 
   .back-link {
@@ -242,7 +269,7 @@
     text-transform: uppercase;
     color: var(--gray-mid);
     text-decoration: none;
-    margin-bottom: 48px;
+    margin-bottom: 28px;
     cursor: pointer;
     transition: color 0.15s;
   }
@@ -250,12 +277,12 @@
   .back-link:hover { color: var(--accent); }
 
   .case-study-label {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gray-mid);
-    margin-bottom: 16px;
+    color: var(--gray-dark);
+    margin-bottom: 12px;
   }
 
   .case-study-title {
@@ -265,10 +292,13 @@
     line-height: 1.1;
     letter-spacing: -0.01em;
     color: var(--black);
-    margin-bottom: 40px;
+    margin-bottom: 0;
   }
 
-  .case-study-meta { display: flex; gap: 48px; flex-wrap: wrap; }
+  .cs-title-emoji { font-style: normal; margin-right: 12px; }
+  .cs-cover-mobile { display: none; }
+
+  .case-study-meta { display: flex; gap: 48px; flex-wrap: wrap; padding-top: 56px; margin-top: 56px; border-top: 1px solid var(--rule); }
 
   .meta-label {
     font-size: 11px;
@@ -281,7 +311,7 @@
 
   .meta-value { font-size: 14px; font-weight: 400; color: var(--gray-dark); }
 
-  .case-study-body { max-width: var(--max-width); margin: 0 auto; padding: 0 48px 120px; }
+  .case-study-body { max-width: 800px; margin: 0 auto; padding: 0 48px 120px; }
 
   .cs-section {
     padding-top: 56px;
@@ -289,7 +319,7 @@
     border-top: 1px solid var(--rule);
   }
 
-  .cs-section:first-child { border-top: none; margin-top: 0; }
+  .cs-section:first-child { border-top: none; margin-top: 0; padding-top: 32px; }
 
   .cs-section-label {
     font-size: 11px;
@@ -449,6 +479,7 @@
   .cs-banner + .cs-section {
     border-top: none;
     margin-top: 0;
+    padding-top: 32px;
   }
 
   .cs-image {
@@ -493,11 +524,29 @@
     .about-profile { width: 100px; height: 100px; }
     .about-text { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 32px; }
     .case-study-meta { gap: 20px 32px; }
+    .expertise-section { padding-left: 24px; padding-right: 24px; }
+    .expertise-grid { grid-template-columns: repeat(2, 1fr); gap: 16px 24px; }
+    .case-study-header { padding-bottom: 16px; display: flex; flex-direction: column; align-items: flex-start; }
+    .back-link { order: 1; }
+    .cs-cover-mobile { order: 2; }
+    .case-study-label { order: 3; margin-top: 16px; }
+    .case-study-title { order: 4; }
+    .cs-section:first-child { padding-top: 20px; }
+    .cs-banner + .cs-section { padding-top: 20px; }
     .work-item { grid-template-columns: 1fr; }
     .work-item--minor { grid-template-columns: 1fr; }
     .work-thumb { display: none; }
     .work-arrow { display: none; }
     .work-title-icon { display: inline; }
+    .cs-title-emoji { display: none; }
+    .cs-cover-mobile {
+      display: block;
+      width: calc(100% + 48px);
+      margin-left: -24px;
+      margin-bottom: 24px;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+    }
     .work-gate { padding: 48px 20px 0; }
     .work-gate-card { width: 100%; box-sizing: border-box; }
   }
@@ -554,7 +603,7 @@
 <body>
 
 <nav>
-  <a class="nav-name" onclick="showPage('home')">Derek Zemper <span class="nav-name-role">Product Designer</span></a>
+  <a class="nav-name" onclick="showPage('home')">Derek Zemper <span class="nav-name-role">Product Design & Strategy</span></a>
   <ul class="nav-links">
     <li><a onclick="showPage('home')" data-page="home" class="active">Work</a></li>
     <li><a onclick="showPage('about')" data-page="about">About</a></li>
@@ -564,7 +613,7 @@
 <!-- HOME -->
 <div id="page-home" class="page active">
   <div class="home-hero">
-    <p class="home-tagline fade-in">I have a habit of going deeper than the design brief. I like the edge cases, the legal constraints, the dev conversations, and the strategic decisions that make good designs ship.</p>
+    <p class="home-tagline fade-in">I have a habit of <strong>going deeper than the design brief.</strong> I like the edge cases, the legal constraints, the dev conversations, and the strategic decisions that <strong>make good designs ship.</strong></p>
   </div>
   <div class="work-list-wrapper">
   <div class="work-list">
@@ -572,7 +621,7 @@
       <div class="work-thumb"><img src="images/cover-payments.png" alt="Additional Interest Payment Removal"></div>
       <div class="work-item-left">
         <div class="work-label">Chase · Pay Business Lending</div>
-        <div class="work-title"><span class="work-title-icon">💳</span>Additional Interest Payment Removal</div>
+        <div class="work-title"><span class="work-title-icon">💳</span>Fixing a High-Stakes Payment Flow Failing Chase Business Customers</div>
         <div class="work-desc">Removing a legacy payment type causing widespread user confusion, while resolving an accessibility failure in a high-stakes financial flow.</div>
       </div>
       <div class="work-arrow">→</div>
@@ -581,7 +630,7 @@
       <div class="work-thumb"><img src="images/cover-conversions.png" alt="Guide-to-Review Conversion"></div>
       <div class="work-item-left">
         <div class="work-label">The Infatuation</div>
-        <div class="work-title"><span class="work-title-icon">🍽️</span>Guide-to-Review Conversion</div>
+        <div class="work-title"><span class="work-title-icon">🍽️</span>A 26% Conversion Lift Through CTA Design and A/B Testing</div>
         <div class="work-desc">Designing and A/B testing CTA treatments to create a more direct path from guide pages to restaurant reviews, increasing guide-to-review conversion by 26%.</div>
       </div>
       <div class="work-arrow">→</div>
@@ -590,7 +639,7 @@
       <div class="work-thumb"><img src="images/cover-notifs.png" alt="Notifications"></div>
       <div class="work-item-left">
         <div class="work-label">The Infatuation</div>
-        <div class="work-title"><span class="work-title-icon">🔔</span>Notifications</div>
+        <div class="work-title"><span class="work-title-icon">🔔</span>Designing The Infatuation's First Scalable Notification System</div>
         <div class="work-desc">Establishing a net-new notifications system to deepen the relationship between The Infatuation and Chase, and give the platform a scalable channel to reach its users.</div>
       </div>
       <div class="work-arrow">→</div>
@@ -598,7 +647,8 @@
     <a class="work-item work-item--minor fade-in" onclick="showPage('cs-ecla'); return false;" href="#">
       <div class="work-item-left">
         <div class="work-label">The Infatuation</div>
-        <div class="work-title">Vibecoded Prototype & Navigation Research<span class="work-tag">In Progress</span></div>
+        <span class="work-tag">In Progress</span>
+        <div class="work-title">Field Research at EEEEEATSCON to Diagnose Low Mobile App Adoption</div>
         <div class="work-desc">Running live research at EEEEEATSCON to test navigation structure against real user behavior and diagnose low mobile app adoption.</div>
       </div>
       <div class="work-arrow">→</div>
@@ -606,7 +656,8 @@
     <a class="work-item work-item--minor fade-in" onclick="showPage('cs-travel-hub'); return false;" href="#">
       <div class="work-item-left">
         <div class="work-label">The Infatuation</div>
-        <div class="work-title">Travel Hub Redesign & Search City Switching<span class="work-tag">In Progress</span></div>
+        <span class="work-tag">In Progress</span>
+        <div class="work-title">Closing a Gap in Search: Designing for Out-of-City Intent on The Infatuation</div>
         <div class="work-desc">Redesigning the Travel Hub to lead with imagery and scale, and adding a deliberate city-switching path to search for users with out-of-city intent.</div>
       </div>
       <div class="work-arrow">→</div>
@@ -614,12 +665,26 @@
     <a class="work-item work-item--minor fade-in" onclick="showPage('cs-starters'); return false;" href="#">
       <div class="work-item-left">
         <div class="work-label">Chase · Starters</div>
-        <div class="work-title">Starter Savings Initiative<span class="work-tag">Concept</span></div>
+        <span class="work-tag">Concept</span>
+        <div class="work-title">Designing Savings Experiences for Chase's Next Generation of Customers</div>
         <div class="work-desc">Concepting and testing experiences to encourage savings behavior and account deepening among Chase's 18 to 24 year old customer segment.</div>
       </div>
       <div class="work-arrow">→</div>
     </a>
   </div>
+  </div>
+  <div class="expertise-section fade-in">
+    <div class="expertise-label">Areas of Expertise</div>
+    <div class="expertise-grid">
+      <div class="expertise-item">Cross-platform product design</div>
+      <div class="expertise-item">A/B testing & experimentation</div>
+      <div class="expertise-item">Field research & synthesis</div>
+      <div class="expertise-item">Design in regulated environments</div>
+      <div class="expertise-item">Cross-functional facilitation</div>
+      <div class="expertise-item">Accessibility design</div>
+      <div class="expertise-item">AI-assisted prototyping</div>
+      <div class="expertise-item">Content design</div>
+    </div>
   </div>
   <footer>
     <span>Derek Zemper</span>
@@ -635,9 +700,9 @@
     </div>
     <div class="about-text">
       <p class="fade-in">I'm a product designer based in Brooklyn, originally from Columbus, Ohio.</p>
-      <p class="fade-in">In college, I was deciding between studying psychology to help people and studying design to create visually compelling graphics. I realized I didn't have to choose, so I double majored in both at Ohio University. When I discovered UX, I approached a professor with experience in the field and proposed an independent study. That decision changed the direction of my career.</p>
-      <p class="fade-in">What stuck with me from psychology is the part that makes me a better designer: genuine curiosity about how people think, what they need, and where systems fail them. I care about creating work that actually helps people, not just work that looks good.</p>
       <p class="fade-in">I've spent my career designing for high-stakes financial products at JPMorganChase and consumer experiences at The Infatuation. I make a point of being active in LGBTQ resource groups - these are spaces I believe in and show up for.</p>
+      <p class="fade-in">During my studies, I was deciding between psychology to help people and design to create visually compelling graphics. I realized I didn't have to choose, so I double majored in both at Ohio University. When I discovered UX, I approached a professor with experience in the field and proposed an independent study. That decision changed the direction of my career.</p>
+      <p class="fade-in">What stuck with me from psychology is the part that makes me a better designer: <strong>genuine curiosity about how people think, what they need, and where systems fail them.</strong> I care about creating work that actually helps people, not just work that looks good.</p>
     </div>
   </div>
   <footer>
@@ -651,7 +716,15 @@
   <div class="case-study-header">
     <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
     <div class="case-study-label">Chase · Pay Business Lending</div>
-    <h1 class="case-study-title">Additional Interest Payment Removal</h1>
+    <img class="cs-cover-mobile" src="images/cover-payments.png" alt="">
+    <h1 class="case-study-title"><span class="cs-title-emoji">💳</span>Fixing a High-Stakes Payment Flow Failing Chase Business Customers</h1>
+  </div>
+  <div class="case-study-body">
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>Pay Business Lending is the mobile payment experience for Chase business lending products, used by small business owners to manage and submit payments on credit lines and loans directly from the Chase mobile app.</p>
+      <p>This project was initiated by the business to address a persistent customer experience problem. The root cause: an "additional interest" payment type that was consistently misunderstood. Customers who intended to pay toward their principal were selecting additional interest instead -a costly mistake in a high-stakes financial context that the business needed to resolve. The business decision was clear: remove it. My job was to figure out what that meant for the experience.</p>
+    </div>
     <div class="case-study-meta">
       <div class="meta-item">
         <div class="meta-label">Role</div>
@@ -666,16 +739,9 @@
         <div class="meta-value">4 Months</div>
       </div>
     </div>
-  </div>
-  <div class="case-study-body">
-    <div class="cs-section">
-      <div class="cs-section-label">Overview</div>
-      <p>Pay Business Lending is the mobile payment experience for Chase business lending products, used by small business owners to manage and submit payments on credit lines and loans directly from the Chase mobile app.</p>
-      <p>This project was initiated by the business to address a persistent customer experience problem. The root cause: an "additional interest" payment type that was consistently misunderstood. Customers who intended to pay toward their principal were selecting additional interest instead -a costly mistake in a high-stakes financial context that the business needed to resolve. The business decision was clear: remove it. My job was to figure out what that meant for the experience.</p>
-    </div>
     <div class="cs-section">
       <div class="cs-section-label">My Role</div>
-      <p>I was the sole product designer on mobile for this initiative, owning the end-to-end design process, from auditing the existing flow and identifying opportunities, to working directly with developers on feasibility, partnering with a content designer on payment type naming and error states, and presenting design options to product stakeholders for sign-off.</p>
+      <p><strong>I was the sole product designer on mobile for this initiative, owning the end-to-end design process,</strong> from auditing the existing flow and identifying opportunities, to working directly with developers on feasibility, partnering with a content designer on payment type naming and error states, and presenting design options to product stakeholders for sign-off.</p>
       <p>A separate designer owned the web and desktop experience. Our platforms had distinct requirements, constraints, and development teams, so we worked independently while staying aligned on direction.</p>
     </div>
     <div class="cs-section">
@@ -698,7 +764,7 @@
     <div class="cs-section">
       <div class="cs-section-label">Process</div>
       <h3>Auditing the existing flow</h3>
-      <p>Before exploring solutions, I needed to fully understand the scope of what I was working with. The existing payment selection screen used a quick select component to display all eleven payment options, some of which contained input fields for custom amounts. This is where I identified an accessibility failure that went beyond the product ask.</p>
+      <p>Before exploring solutions, I needed to fully understand the scope of what I was working with. The existing payment selection screen used a quick select component to display all eleven payment options, some of which contained input fields for custom amounts. This is where <strong>I identified an accessibility failure that went beyond the product ask.</strong></p>
       <p>Quick select is a component pattern that assumes a single tap completes the interaction. When applied to an option containing an input field, it breaks down entirely. Screen readers and tab navigation cannot properly engage with an input field treated as a quick select item, making the experience inaccessible for users relying on assistive technology. This was an accessibility gap. Removing additional interest gave me the opportunity to address it.</p>
       <p>I brought this finding to our accessibility specialists, who confirmed the issue and provided guidance on the appropriate component pattern. Radio buttons, which are designed to work with input fields and are fully compatible with screen readers and keyboard navigation, became the foundation for the redesigned screen.</p>
       <div class="cs-image">
@@ -706,7 +772,7 @@
         <p class="cs-caption">Accessibility gap (yellow) and content update needs (green) identified during the audit</p>
       </div>
       <h3>Exploring solutions</h3>
-      <p>Rather than designing to a single solution, I developed three options at different levels of scope and brought them to product and technology stakeholders with rough t-shirt sizing for engineering effort.</p>
+      <p>Rather than designing to a single solution, <strong>I developed three options at different levels of scope</strong> and brought them to product and technology stakeholders with rough t-shirt sizing for engineering effort.</p>
       <p>The first was our target state: a consolidated flow that combined the payment summary and pay-from screens into a single screen, and added a payment verification screen for consistency with other Chase payment flows. This was the most ambitious option and carried the largest engineering lift.</p>
       <p>The second was a middle ground: the same screen consolidation, but replacing the verification screen with an updated action sheet that displayed payment totals. Smaller lift, but still a meaningful improvement to the overall flow.</p>
       <div class="cs-image">
@@ -723,7 +789,7 @@
         <p class="cs-caption">Final design: radio buttons replacing the quick select component; the selected direction</p>
       </div>
       <h3>Working with developers</h3>
-      <p>I ran my own feasibility calls with the mobile development team throughout the process. Understanding what could and could not be built on the platform shaped how I scoped each option and how I communicated tradeoffs to product. I also conducted visual QA in collaboration with developers to ensure the implemented experience matched the design intent.</p>
+      <p><strong>I ran my own feasibility calls with the mobile development team throughout the process.</strong> Understanding what could and could not be built on the platform shaped how I scoped each option and how I communicated tradeoffs to product. I also conducted visual QA in collaboration with developers to ensure the implemented experience matched the design intent.</p>
       <h3>Edge cases and content</h3>
       <p>I identified the full range of edge cases the redesigned screen needed to account for: error states, zero balance states, and the specific scenario where a customer attempts to edit a previously scheduled payment that included additional interest. Each required distinct content and interaction decisions. I looped in our content designer as needed throughout this process.</p>
       <div class="cs-image">
@@ -734,7 +800,7 @@
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
       <p>The redesigned payment selection screen shipped with additional interest removed and radio buttons in place of the previous quick select pattern, resolving the accessibility gap identified during the audit.</p>
-      <p>The removal of the additional interest payment type reduced the source of confusion that was driving reversal requests. The target state, representing a more significant consolidation of the payment flow, was documented and remains available for the team to revisit when capacity allows.</p>
+      <p>The removal of the additional interest payment type <strong>reduced the source of confusion that was driving reversal requests.</strong> The target state, representing a more significant consolidation of the payment flow, was documented and remains available for the team to revisit when capacity allows.</p>
     </div>
   </div>
   <footer>
@@ -748,7 +814,16 @@
   <div class="case-study-header">
     <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
     <div class="case-study-label">The Infatuation</div>
-    <h1 class="case-study-title">Notifications</h1>
+    <img class="cs-cover-mobile" src="images/cover-notifs.png" alt="">
+    <h1 class="case-study-title"><span class="cs-title-emoji">🔔</span>Designing The Infatuation's First Scalable Notification System</h1>
+  </div>
+  <div class="case-study-body">
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>The Infatuation is a restaurant discovery platform and editorial brand, operating as a subsidiary of JPMorganChase. Despite that relationship, the connection between the two brands was underleveraged. Chase users with dining benefits had little visibility into how The Infatuation could help them act on those benefits, and The Infatuation had no scalable way to communicate that value to its users.</p>
+      <p>My product manager and I identified this as a meaningful gap. A notifications system could serve as the connective tissue, giving The Infatuation a direct channel to reach users with relevant content, feature announcements, events, and Chase benefit information, while strengthening the perceived relationship between the two brands. For Chase users in particular, surfacing dining benefits within The Infatuation could drive benefit utilization and deepen engagement with both platforms.</p>
+      <p>This project established notifications as a net-new capability within The Infatuation's digital experience, across mobile app, mobile web, and desktop web. It included the design of the notification entry point and container, the enrollment and opt-in model, and a redesigned communications settings experience. The work also required navigating legal constraints tied to Chase's notification policies and coordinating across multiple internal teams.</p>
+    </div>
     <div class="case-study-meta">
       <div class="meta-item">
         <div class="meta-label">Role</div>
@@ -763,17 +838,9 @@
         <div class="meta-value">In Development</div>
       </div>
     </div>
-  </div>
-  <div class="case-study-body">
-    <div class="cs-section">
-      <div class="cs-section-label">Overview</div>
-      <p>The Infatuation is a restaurant discovery platform and editorial brand, operating as a subsidiary of JPMorganChase. Despite that relationship, the connection between the two brands was underleveraged. Chase users with dining benefits had little visibility into how The Infatuation could help them act on those benefits, and The Infatuation had no scalable way to communicate that value to its users.</p>
-      <p>My product manager and I identified this as a meaningful gap. A notifications system could serve as the connective tissue, giving The Infatuation a direct channel to reach users with relevant content, feature announcements, events, and Chase benefit information, while strengthening the perceived relationship between the two brands. For Chase users in particular, surfacing dining benefits within The Infatuation could drive benefit utilization and deepen engagement with both platforms.</p>
-      <p>This project established notifications as a net-new capability within The Infatuation's digital experience, across mobile app, mobile web, and desktop web. It included the design of the notification entry point and container, the enrollment and opt-in model, and a redesigned communications settings experience. The work also required navigating legal constraints tied to Chase's notification policies and coordinating across multiple internal teams.</p>
-    </div>
     <div class="cs-section">
       <div class="cs-section-label">My Role</div>
-      <p>I was the sole product designer on this initiative, working alongside a product manager. My responsibilities extended beyond UI design. I contributed to the strategic framing of the feature, helped define the notification category structure, drafted copy for key states of the experience, and designed the legal enrollment model that shaped how users are onboarded into notifications. I collaborated with engineering, editorial, legal, and Chase partners throughout the process.</p>
+      <p>I was the sole product designer on this initiative, working alongside a product manager. <strong>My responsibilities extended beyond UI design.</strong> I contributed to the strategic framing of the feature, helped define the notification category structure, drafted copy for key states of the experience, and <strong>designed the legal enrollment model that shaped how users are onboarded into notifications.</strong> I collaborated with engineering, editorial, legal, and Chase partners throughout the process.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">The Problem</div>
@@ -791,10 +858,10 @@
     <div class="cs-section">
       <div class="cs-section-label">Process</div>
       <h3>Defining the notification categories</h3>
-      <p>Early in the project, my product manager and I worked to define what kinds of notifications The Infatuation would actually send. We landed on four categories: product announcements, editorial content, experiential notifications for events like EEEEEATSCON, and Chase-related benefits for linked users. I advocated specifically for the product announcements category, which had no prior equivalent in the experience. Without a dedicated channel for feature announcements, the platform had been relying on one-off modals to introduce new functionality. A persistent, categorized notifications system offered a more scalable alternative and the potential to increase utilization of new features over time.</p>
+      <p>Early in the project, my product manager and I worked to define what kinds of notifications The Infatuation would actually send. We landed on four categories: product announcements, editorial content, experiential notifications for events like EEEEEATSCON, and Chase-related benefits for linked users. <strong>I advocated specifically for the product announcements category, which had no prior equivalent in the experience.</strong> Without a dedicated channel for feature announcements, the platform had been relying on one-off modals to introduce new functionality. A persistent, categorized notifications system offered a more scalable alternative and the potential to increase utilization of new features over time.</p>
       <h3>Designing the experience</h3>
       <p>I designed the notifications entry point as a bell icon living in the primary navigation, consistent across mobile app, mobile web, and desktop web. When tapped, a scrollable popover appears displaying the user's notifications, each of which links to a relevant destination within the product. An unread indicator appears on the bell when new notifications are present.</p>
-      <p>During a design review with stakeholders, I received feedback that the web experience should not include a full hub screen and should rely solely on the flyout treatment. While I believed a hub screen would offer better scalability and skimmability as the feature grows, I understood the importance of stakeholder alignment and removed it from V1, keeping the decision documented for future consideration.</p>
+      <p>During a design review with stakeholders, I received feedback that the web experience should not include a full hub screen and should rely solely on the flyout treatment. While I believed a hub screen would offer better scalability and skimmability as the feature grows, I understood the importance of stakeholder alignment and removed it from V1, <strong>keeping the decision documented for future consideration.</strong></p>
       <div class="cs-image">
         <img src="images/notif-popover-states.png" alt="Notification popover states: empty, unread, and read">
         <p class="cs-caption">Popover states: empty, unread notifications, and read notifications</p>
@@ -803,18 +870,18 @@
       <p>As I began drafting notification copy and sharing it with legal, two significant constraints surfaced. Legal review surfaced constraints around how Chase-linked users could be enrolled in certain notification categories, and separately, that all notification content would need to pass through an internal content approval process.</p>
       <p>The enrollment constraint had real engineering implications. If we had designed an enrollment model that required pulling external data to check user opt-out status, it would have added significant scope to the engineering effort and required coordination with additional teams. Instead, I designed an enrollment model that automatically enrolls users in all notification categories except Chase-related benefits, which requires explicit opt-in through settings. Users are informed of this through the product announcements category, keeping the implementation within The Infatuation's own infrastructure.</p>
       <h3>Redesigning communications settings</h3>
-      <p>Settings within The Infatuation had been touched by multiple teams over time and were not consolidated into a coherent experience. Rather than layering notification preferences on top of an already fragmented structure, I used this project as an opportunity to redesign communications settings holistically. I aligned with the teams that had previously contributed to settings, received buy-in for the changes, and created a consolidated experience with real estate for notification preferences. For users who were not linked to Chase, I designed a CTA within settings to encourage them to link their account directly, so they could access the full benefit notifications feature.</p>
+      <p>Settings within The Infatuation had been touched by multiple teams over time and were not consolidated into a coherent experience. Rather than layering notification preferences on top of an already fragmented structure, <strong>I used this project as an opportunity to redesign communications settings holistically.</strong> I aligned with the teams that had previously contributed to settings, received buy-in for the changes, and created a consolidated experience with real estate for notification preferences. For users who were not linked to Chase, I designed a CTA within settings to encourage them to link their account directly, so they could access the full benefit notifications feature.</p>
       <div class="cs-image">
         <img src="images/notif-settings-before-after.png" alt="Communications settings before and after the redesign">
         <p class="cs-caption">Communications settings: before and after the redesign</p>
       </div>
       <h3>Content and copy</h3>
-      <p>In the absence of a content designer dedicated to this work, I took on the responsibility of drafting copy for the various states of the notifications experience, including empty states, notifications-not-enabled states, and mock notification copy across all four categories. To support this work, I built a content design helper agent through an internal LLM tool, which allowed me to pressure test my copy, think through alternative approaches, and move more efficiently without sacrificing quality. I worked with our editorial partners to review and approve the copy in working sessions, and I flagged the content approval requirement to relevant stakeholders so that all parties contributing notification content in the future would be aware of the process.</p>
+      <p>In the absence of a content designer dedicated to this work, I took on the responsibility of drafting copy for the various states of the notifications experience, including empty states, notifications-not-enabled states, and mock notification copy across all four categories. To support this work, <strong>I built a content design helper agent through an internal LLM tool,</strong> which allowed me to pressure test my copy, think through alternative approaches, and move more efficiently without sacrificing quality. I worked with our editorial partners to review and approve the copy in working sessions, and I flagged the content approval requirement to relevant stakeholders so that all parties contributing notification content in the future would be aware of the process.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
       <p>Notifications is currently in development. Because the feature has not yet launched, quantitative performance data is not yet available. The decisions made throughout the design process were oriented toward outcomes that will be measurable post-launch, including feature utilization rates, Chase benefit engagement among linked users, and notification opt-in rates by category.</p>
-      <p>Several decisions made during the process had immediate, tangible impact regardless of launch. The enrollment model I designed avoided a significant engineering scoping problem by keeping notification logic within The Infatuation's own infrastructure, removing the need to coordinate with additional Chase teams or pull external data. The communications settings redesign consolidated a fragmented experience that had accumulated across multiple teams, resulting in a cleaner foundation for future preference management. Early legal collaboration surfaced a content approval requirement that gave the broader team clarity on how notifications would be written and reviewed going forward.</p>
+      <p>Several decisions made during the process had immediate, tangible impact regardless of launch. <strong>The enrollment model I designed avoided a significant engineering scoping problem</strong> by keeping notification logic within The Infatuation's own infrastructure, removing the need to coordinate with additional Chase teams or pull external data. The communications settings redesign consolidated a fragmented experience that had accumulated across multiple teams, resulting in a cleaner foundation for future preference management. Early legal collaboration surfaced a content approval requirement that gave the broader team clarity on how notifications would be written and reviewed going forward.</p>
       <p>The feature represents a net-new capability for The Infatuation and a foundation that can scale as the relationship between the platform and Chase continues to develop.</p>
     </div>
   </div>
@@ -829,7 +896,15 @@
   <div class="case-study-header">
     <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
     <div class="case-study-label">The Infatuation</div>
-    <h1 class="case-study-title">Vibecoded Prototype & Navigation Research</h1>
+    <h1 class="case-study-title">Field Research at EEEEEATSCON to Diagnose Low Mobile App Adoption</h1>
+  </div>
+  <div class="case-study-body">
+    <p class="cs-banner">This project is ongoing and no final design assets exist yet. Visuals will be added upon completion.</p>
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>The Infatuation's mobile app had a problem: adoption was significantly lower than mobile web, and we suspected navigation was a core reason. Features were buried, flows were nested, and the structure didn't match how users actually thought about finding a restaurant.</p>
+      <p><a href="https://www.eeeeeatscon.com/" target="_blank" rel="noopener noreferrer" class="cs-link">EEEEEATSCON</a> is The Infatuation's annual food festival, built in the spirit of a music festival but with restaurants as the headliners. It gave us direct access to a concentrated audience of engaged food people, which made it an ideal place to run live comparative research.</p>
+    </div>
     <div class="case-study-meta">
       <div class="meta-item">
         <div class="meta-label">Role</div>
@@ -840,17 +915,9 @@
         <div class="meta-value">In Progress</div>
       </div>
     </div>
-  </div>
-  <div class="case-study-body">
-    <p class="cs-banner">This project is ongoing and no final design assets exist yet. Visuals will be added upon completion.</p>
-    <div class="cs-section">
-      <div class="cs-section-label">Overview</div>
-      <p>The Infatuation's mobile app had a problem: adoption was significantly lower than mobile web, and we suspected navigation was a core reason. Features were buried, flows were nested, and the structure didn't match how users actually thought about finding a restaurant.</p>
-      <p><a href="https://www.eeeeeatscon.com/" target="_blank" rel="noopener noreferrer" class="cs-link">EEEEEATSCON</a> is The Infatuation's annual food festival, built in the spirit of a music festival but with restaurants as the headliners. It gave us direct access to a concentrated audience of engaged food people, which made it an ideal place to run live comparative research.</p>
-    </div>
     <div class="cs-section">
       <div class="cs-section-label">My Role</div>
-      <p>I led this project end to end, from prototyping through research planning, facilitation, and synthesis. I walked the plan through the full product and design team before going to field, and ran sessions alongside a product manager at EEEEEATSCON.</p>
+      <p><strong>I led this project end to end, from prototyping through research planning, facilitation, and synthesis.</strong> I walked the plan through the full product and design team before going to field, and ran sessions alongside a product manager at EEEEEATSCON.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">The Problem</div>
@@ -862,13 +929,13 @@
     <div class="cs-section">
       <div class="cs-section-label">Process</div>
       <h3>Building the prototype</h3>
-      <p>I vibecoded a functional prototype using Claude and GitHub Copilot in VS Code, grounded in UX heuristics and assumptions about what the navigation should prioritize. A developer loaded it on device so we could run a true side-by-side comparison against the production build.</p>
+      <p><strong>I vibecoded a functional prototype using Claude and GitHub Copilot in VS Code,</strong> grounded in UX heuristics and assumptions about what the navigation should prioritize. A developer loaded it on device so we could run a true side-by-side comparison against the production build.</p>
       <h3>Going to field</h3>
-      <p>We took the research to EEEEEATSCON, intercepting attendees over two days and offering a free meal token in exchange for 10 minutes. 16 participants completed two-part sessions: first, a conversation about how they find restaurants and what platforms they use; then a task where they were asked to find a restaurant in a new city using either the prototype or production. Sessions were screen-recorded and audio was captured and summarized using Granola.</p>
+      <p>We took the research to EEEEEATSCON, intercepting attendees over two days and offering a free meal token in exchange for 10 minutes. <strong>16 participants completed two-part sessions</strong>: first, a conversation about how they find restaurants and what platforms they use; then a task where they were asked to find a restaurant in a new city using either the prototype or production. Sessions were screen-recorded and audio was captured and summarized using Granola.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Findings</div>
-      <p>Users responded positively to bottom navigation and wanted clearer separation between features. Benefits information didn't belong in primary navigation. The key tradeoff: moving the map off the opening screen reduced discoverability, even though it cleaned up the initial experience. Given that map and search were users' primary jobs to be done, that tension will need to be resolved in the final design direction.</p>
+      <p>Users responded positively to bottom navigation and wanted clearer separation between features. Benefits information didn't belong in primary navigation. <strong>The key tradeoff: moving the map off the opening screen reduced discoverability, even though it cleaned up the initial experience.</strong> Given that map and search were users' primary jobs to be done, that tension will need to be resolved in the final design direction.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
@@ -886,7 +953,15 @@
   <div class="case-study-header">
     <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
     <div class="case-study-label">The Infatuation</div>
-    <h1 class="case-study-title">Travel Hub Redesign & Search City Switching</h1>
+    <h1 class="case-study-title">Closing a Gap in Search: Designing for Out-of-City Intent on The Infatuation</h1>
+  </div>
+  <div class="case-study-body">
+    <p class="cs-banner">This release is ongoing and there are no final screens to share yet.</p>
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>The Infatuation's editorial team was planning a travel marketing push and wanted the Travel Hub to match the moment. The hub is the entry point for users planning trips, surfacing city guides and destination content across the site, but the existing page undersold the breadth of cities we cover and the linked See All Cities page gave users little to explore. I redesigned both surfaces across web, mobile web, and app to lead with imagery and make the city catalog feel expansive: a visual grid on the hub and a filterable See All Cities page.</p>
+      <p>While working through the travel experience, I identified a separate problem worth solving. The Infatuation is a city-specific product -your content experience is tied to whatever city you're set to. A user could technically switch cities by clicking into a venue review from the "Outside of [city]" section in search results, but they'd land on the review itself, not the city section front. The only deliberate path to change your city was in the navigation, which was buried in the app. Search is where users with intent go first, and it had no way to meet that intent directly.</p>
+    </div>
     <div class="case-study-meta">
       <div class="meta-item">
         <div class="meta-label">Role</div>
@@ -901,17 +976,9 @@
         <div class="meta-value">Built, waiting for release</div>
       </div>
     </div>
-  </div>
-  <div class="case-study-body">
-    <p class="cs-banner">This release is ongoing and there are no final screens to share yet.</p>
-    <div class="cs-section">
-      <div class="cs-section-label">Overview</div>
-      <p>The Infatuation's editorial team was planning a travel marketing push and wanted the Travel Hub to match the moment. The hub is the entry point for users planning trips, surfacing city guides and destination content across the site, but the existing page undersold the breadth of cities we cover and the linked See All Cities page gave users little to explore. I redesigned both surfaces across web, mobile web, and app to lead with imagery and make the city catalog feel expansive: a visual grid on the hub and a filterable See All Cities page.</p>
-      <p>While working through the travel experience, I identified a separate problem worth solving. The Infatuation is a city-specific product -your content experience is tied to whatever city you're set to. A user could technically switch cities by clicking into a venue review from the "Outside of [city]" section in search results, but they'd land on the review itself, not the city section front. The only deliberate path to change your city was in the navigation, which was buried in the app. Search is where users with intent go first, and it had no way to meet that intent directly.</p>
-    </div>
     <div class="cs-section">
       <div class="cs-section-label">My Role</div>
-      <p>Sole designer. The travel hub and city grid work was in my original scope. I identified the search gap independently, made the case for including it, and it was added.</p>
+      <p>Sole designer. The travel hub and city grid work was in my original scope. <strong>I identified the search gap independently, made the case for including it, and it was added.</strong></p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">The Problem</div>
@@ -926,11 +993,11 @@
       <p>The travel redesign itself was relatively straightforward: audit the existing hub, identify what was underselling the catalog, design a city grid with photography that communicated scale, and build a filterable See All Cities page to make exploration feel less like a list and more like a browse.</p>
       <h3>Search city switching</h3>
       <p>The search work required more cross-functional coordination. I worked with engineering to define the triggering logic: the CTA surfaces when a user has typed at least three letters matching a city we write about, accounting for abbreviations so that "NYC" and "New York" both work.</p>
-      <p>We also had to handle a specific layout edge case. The "Outside of [city]" section, where the CTA lives, can collapse when there are enough local results. A user typing an exact city name could easily miss it. I added a second placement directly beneath the search bar that triggers on an exact match, so the prompt is visible when the intent is clearest.</p>
+      <p>We also had to handle a specific layout edge case. The "Outside of [city]" section, where the CTA lives, can collapse when there are enough local results. A user typing an exact city name could easily miss it. <strong>I added a second placement directly beneath the search bar that triggers on an exact match, so the prompt is visible when the intent is clearest.</strong></p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
-      <p>Both the travel redesign and the search city-switching work are built and waiting on the next release. The search work adds a deliberate action path for a behavior the product previously had no answer for. Users with out-of-city intent can now act on it from the most natural place on the site.</p>
+      <p>Both the travel redesign and the search city-switching work are built and waiting on the next release. <strong>The search work adds a deliberate action path for a behavior the product previously had no answer for.</strong> Users with out-of-city intent can now act on it from the most natural place on the site.</p>
     </div>
   </div>
   <footer>
@@ -944,7 +1011,15 @@
   <div class="case-study-header">
     <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
     <div class="case-study-label">Chase · Starters</div>
-    <h1 class="case-study-title">Starter Savings Initiative</h1>
+    <h1 class="case-study-title">Designing Savings Experiences for Chase's Next Generation of Customers</h1>
+  </div>
+  <div class="case-study-body">
+    <p class="cs-banner">Specific details about this work have been intentionally omitted due to NDA. I'm happy to answer questions about the process, decisions, and outcomes in conversation.</p>
+    <div class="cs-section">
+      <div class="cs-section-label">Overview and Role</div>
+      <p>The Starter segment is Chase's dedicated experience for customers aged 18 to 24, focused on driving growth and deepening their relationship with the bank. The cross-product strategy team identified an opportunity to help the Starters team create experiences that would encourage account deepening, getting young customers to engage more broadly with Chase's suite of products and services, with the goal of building long-term loyalty.</p>
+      <p>I was brought in alongside another designer to collaborate with the Starters team on concept development and research synthesis. We worked in tandem throughout, bouncing ideas off each other and building on each other's thinking.</p>
+    </div>
     <div class="case-study-meta">
       <div class="meta-item">
         <div class="meta-label">Role</div>
@@ -959,22 +1034,14 @@
         <div class="meta-value">In Development</div>
       </div>
     </div>
-  </div>
-  <div class="case-study-body">
-    <p class="cs-banner">Specific details about this work have been intentionally omitted due to NDA. I'm happy to answer questions about the process, decisions, and outcomes in conversation.</p>
-    <div class="cs-section">
-      <div class="cs-section-label">Overview and Role</div>
-      <p>The Starter segment is Chase's dedicated experience for customers aged 18 to 24, focused on driving growth and deepening their relationship with the bank. The cross-product strategy team identified an opportunity to help the Starters team create experiences that would encourage account deepening, getting young customers to engage more broadly with Chase's suite of products and services, with the goal of building long-term loyalty.</p>
-      <p>I was brought in alongside another designer to collaborate with the Starters team on concept development and research synthesis. We worked in tandem throughout, bouncing ideas off each other and building on each other's thinking.</p>
-    </div>
     <div class="cs-section">
       <div class="cs-section-label">Process</div>
-      <p>We began by immersing ourselves in existing research and competitive analysis, reviewing how other financial institutions and fintech products approached savings behavior. From there, we facilitated a Crazy 8's workshop with product and design stakeholders, generating 50 ideas in 20 minutes across themes like gamification, rewards, goal visualization, and social accountability. The workshop surfaced two strategic directions worth pursuing: rewards and benefits, and monitoring and communications.</p>
-      <p>Working collaboratively, we developed six concepts across those two themes, each designed to encourage healthier saving habits among young, paycheck-to-paycheck customers. We then partnered with a researcher to test thirteen concepts with real Starter users through an unmoderated usability study, synthesizing the findings and shaping the story for our handoff. Our final deliverable was a set of concepts ready for further ideation and development, along with a clear recommendation for where the team should focus next.</p>
+      <p>We began by immersing ourselves in existing research and competitive analysis, reviewing how other financial institutions and fintech products approached savings behavior. From there, we facilitated a Crazy 8's workshop with product and design stakeholders, <strong>generating 50 ideas in 20 minutes</strong> across themes like gamification, rewards, goal visualization, and social accountability. The workshop surfaced two strategic directions worth pursuing: rewards and benefits, and monitoring and communications.</p>
+      <p>Working collaboratively, we developed six concepts across those two themes, each designed to encourage healthier saving habits among young, paycheck-to-paycheck customers. We then <strong>partnered with a researcher to test thirteen concepts with real Starter users through an unmoderated usability study</strong>, synthesizing the findings and shaping the story for our handoff. Our final deliverable was a set of concepts ready for further ideation and development, along with a clear recommendation for where the team should focus next.</p>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
-      <p>The work delivered a validated foundation for the Starters team to build from. Designing within the constraints of a large banking organization required careful consideration of technical feasibility, privacy implications of surfacing financial data, and the behavioral realities of a segment with limited financial flexibility. The team is currently developing features informed by this work, reflecting the value of the concepts we delivered.</p>
+      <p>The work delivered a validated foundation for the Starters team to build from. <strong>Designing within the constraints of a large banking organization required careful consideration of technical feasibility, privacy implications of surfacing financial data, and the behavioral realities of a segment with limited financial flexibility.</strong> The team is currently developing features informed by this work, reflecting the value of the concepts we delivered.</p>
     </div>
   </div>
   <footer>
@@ -988,7 +1055,15 @@
   <div class="case-study-header">
     <a class="back-link" onclick="showPage('home'); return false;" href="#">← Work</a>
     <div class="case-study-label">The Infatuation</div>
-    <h1 class="case-study-title">Guide-to-Review Conversion</h1>
+    <img class="cs-cover-mobile" src="images/cover-conversions.png" alt="">
+    <h1 class="case-study-title"><span class="cs-title-emoji">🍽️</span>A 26% Conversion Lift Through CTA Design and A/B Testing</h1>
+  </div>
+  <div class="case-study-body">
+    <div class="cs-section">
+      <div class="cs-section-label">Overview</div>
+      <p>The Infatuation is an editorial platform built around restaurant recommendations. Its two core editorial products are guides, which group restaurants by theme or neighborhood, and reviews, which give readers a detailed take on a specific restaurant. Both are central to the experience, but users browsing guides weren't converting to reviews at the rate the business expected.</p>
+      <p>The opportunity was clear: reduce the friction between a guide and the review behind each restaurant listed in it. I designed two CTA treatments to create that path more explicitly, tested them against control in an A/B experiment, and shipped the winning variant.</p>
+    </div>
     <div class="case-study-meta">
       <div class="meta-item">
         <div class="meta-label">Role</div>
@@ -1003,13 +1078,6 @@
         <div class="meta-value">2 Months</div>
       </div>
     </div>
-  </div>
-  <div class="case-study-body">
-    <div class="cs-section">
-      <div class="cs-section-label">Overview</div>
-      <p>The Infatuation is an editorial platform built around restaurant recommendations. Its two core editorial products are guides, which group restaurants by theme or neighborhood, and reviews, which give readers a detailed take on a specific restaurant. Both are central to the experience, but users browsing guides weren't converting to reviews at the rate the business expected.</p>
-      <p>The opportunity was clear: reduce the friction between a guide and the review behind each restaurant listed in it. I designed two CTA treatments to create that path more explicitly, tested them against control in an A/B experiment, and shipped the winning variant.</p>
-    </div>
     <div class="cs-section">
       <div class="cs-section-label">My Role</div>
       <p>I was the sole product designer on this project, working with a PM and a development team. I owned the design process end to end, from early exploration through critique and iteration to final specs. The project ran for roughly two months.</p>
@@ -1018,19 +1086,15 @@
       <div class="cs-section-label">The Problem</div>
       <p>Users browsing guide pages had no direct path to the review for a given restaurant. The only way to get there was to tap the venue title, which wasn't clearly interactive; the hover state indicating it was a link was only visible on desktop. As a result, users who might have continued deeper into the product weren't doing so.</p>
       <p>The guide page also featured a lightbox, an expanded image treatment that users could open from any restaurant listing. The lightbox had an existing CTA pointing to the review, but it wasn't prominent enough to drive meaningful engagement.</p>
-      <p>The gap wasn't a content problem. The reviews existed. Users just weren't finding a clear route to them.</p>
+      <p><strong>The gap wasn't a content problem. The reviews existed. Users just weren't finding a clear route to them.</strong></p>
       <div class="cs-problem-statement">
         <p>Guide pages needed a more explicit path to reviews, surfaced at the moments users were most likely to want one.</p>
-      </div>
-      <div class="cs-image">
-        <img src="images/gr-app-before-after.png" alt="App lightbox before and after, with the improved CTA replacing the original buried link" style="width: 420px; max-width: 100%; display: block; margin: 0 auto;">
-        <p class="cs-caption">App lightbox: before and after the improved CTA treatment</p>
       </div>
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Process</div>
       <h3>Identifying the opportunity</h3>
-      <p>The initial brief was focused on improving the lightbox CTA, which existed but wasn't driving meaningful engagement. As I dug into the guide page experience, I identified a broader opportunity: the caption area on each restaurant listing had no CTA at all. Users had no explicit prompt to go read the review from the most prominent part of the guide page. Adding one became a natural extension of the work.</p>
+      <p>The initial brief was focused on improving the lightbox CTA, which existed but wasn't driving meaningful engagement. As I dug into the guide page experience, <strong>I identified a broader opportunity: the caption area on each restaurant listing had no CTA at all.</strong> Users had no explicit prompt to go read the review from the most prominent part of the guide page. Adding one became a natural extension of the work.</p>
       <p>I worked through multiple iterations of both treatments and brought them to group critiques with other designers before landing on a direction. Critique pushed me to sharpen the hierarchy of the caption CTA and reconsider how the lightbox CTA was weighted relative to the rest of the lightbox content.</p>
       <div class="cs-image">
         <img src="images/gr-app-iterations.png" alt="Four iterations of the guide card caption CTA, evolving from 'Go to the Review' to 'Read the full review'">
@@ -1044,7 +1108,7 @@
         <p class="cs-caption">A/B experiment: Control, Variant A (caption + lightbox CTA), and Variant B (+ full-screen carousel CTA)</p>
       </div>
       <h3>The decision to ship Variant A</h3>
-      <p>The experiment results showed Variant B performing slightly ahead of Variant A, but the difference was marginal and not strong enough to justify the added complexity. The more important consideration was that the final full-screen lightbox CTA carried real risk. A user reaching the end of a carousel reasonably expects another image, not a CTA screen. Presenting one there felt like it could erode trust rather than build it.</p>
+      <p>The experiment results showed Variant B performing slightly ahead of Variant A, but the difference was marginal and not strong enough to justify the added complexity. The more important consideration was that the final full-screen lightbox CTA carried real risk. <strong>A user reaching the end of a carousel reasonably expects another image, not a CTA screen. Presenting one there felt like it could erode trust rather than build it.</strong></p>
       <div class="cs-image">
         <img src="images/gr-app-carousel.png" alt="Variant B's full-screen end-of-carousel CTA in the app: Still interested in The Phreys? Read the Review" style="width: 320px; max-width: 100%; display: block; margin: 0 auto;">
         <p class="cs-caption">Variant B's full-screen carousel CTA in the app, an interaction pattern users don't expect at the end of an image carousel</p>
@@ -1053,8 +1117,7 @@
     </div>
     <div class="cs-section">
       <div class="cs-section-label">Outcomes</div>
-      <p>Variant A shipped across the mobile app, mobile web, and desktop web. Guide-to-review conversion rate increased by 26%, and the "Read the Review" click rate increased by 112%, driven primarily by the new caption CTA. Venue title click rate dropped 15%, which was expected: users now had a more explicit path to the review, making the title itself a less necessary tap.</p>
-      <p>Retention at seven days was unchanged, confirming that the new CTAs weren't creating a pattern users bounced from.</p>
+      <p>Variant A shipped across the mobile app, mobile web, and desktop web. <strong>Guide-to-review conversion rate increased by 26%, and the "Read the Review" click rate increased by 112%</strong>, driven primarily by the new caption CTA. Venue title click rate dropped 15%, which was expected: users now had a more explicit path to the review, making the title itself a less necessary tap.</p>
     </div>
   </div>
   <footer>
