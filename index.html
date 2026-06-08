@@ -1168,7 +1168,7 @@
   });
 
 
-  function showPage(id) {
+  function showPage(id, fromPopstate) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const target = document.getElementById('page-' + id);
     if (target) {
@@ -1185,7 +1185,16 @@
     document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
       a.classList.toggle('active', a.dataset.page === activeNav);
     });
+    if (!fromPopstate) {
+      history.pushState({ page: id }, '', '#' + id);
+    }
   }
+
+  history.replaceState({ page: 'home' }, '', location.href);
+
+  window.addEventListener('popstate', function(e) {
+    showPage(e.state ? e.state.page : 'home', true);
+  });
 </script>
 </body>
 </html>
